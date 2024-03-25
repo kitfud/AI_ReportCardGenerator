@@ -1,15 +1,15 @@
 
 import './App.css';
 import React,{useState} from 'react'
-import { Button } from '@mui/material';
 
+import {  Box, TextField, Typography, Card, Button} from "@mui/material"
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 function App() {
 
-  // node --version # Should be >= 18
-// npm install @google/generative-ai
-
 const [data,setData] = useState(null)
+
+const [assignmentData, setAssignmentData] = useState([])
 
 // node --version # Should be >= 18
 // npm install @google/generative-ai
@@ -93,10 +93,51 @@ async function runChat() {
   setData(data)
 }
 
+const addAssignment = ()=>{
+  console.log(assignmentData)
+  setAssignmentData(assignmentData.length>0?assignmentData=>[...assignmentData,{'assignment':'','comment':''}]:[{'assignment':'','comment':''}])
+  console.log(assignmentData.length)
+}
 
   return (
     <div className="App">
       <header className="App-header">
+        <Card sx={{marginTop:'20px'}}>
+        <TextField  
+        sx={{marginTop:'20px'}}
+        variant='outlined'
+        label="person's name"></TextField>
+
+        <TextField  
+        variant='outlined'
+        label="Overall Grade"></TextField>
+
+
+<Box>
+  <Typography>Add Assignment</Typography>
+<Button onClick={addAssignment}>
+<AddCircleIcon />
+</Button>
+</Box>
+      
+{
+  
+  assignmentData.map(assignment=>{
+    return (
+     
+      <Box sx={{margin:'20px'}} key={assignmentData.indexOf(assignment)}>
+        <TextField label="Assignment Name"></TextField>
+        <TextField label="Comment"></TextField>
+        <TextField label="Grade"></TextField>
+      </Box>
+     
+    )
+  })
+}
+
+
+        </Card>
+
     <Button variant='contained' onClick={runChat}>CLICK</Button>
     {data}
       </header>
