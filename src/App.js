@@ -146,15 +146,15 @@ function App() {
     let canTakeLetters = true;
     let astrixCount = 0;
     for (let i = 0; i < data.length; i++) {
-      if (data[i] == "*") {
+      if (data[i] === "*") {
         astrixCount++;
         canTakeLetters = false;
-        if (astrixCount == 4) {
+        if (astrixCount === 4) {
           canTakeLetters = true;
         }
       }
       if (canTakeLetters) {
-        if (data[i] == "*") {
+        if (data[i] === "*") {
           continue;
         }
         newString += data[i];
@@ -242,51 +242,72 @@ function App() {
         </Card>
         {/* 
         <Button onClick={createMessage} variant='contained'>Preview Data</Button> */}
-
         {!generating ? (
           <>
+            {/* Button to trigger the generation of a comment */}
             <Button
               variant="contained"
               color="success"
-              onClick={runChat}
+              onClick={runChat} // Triggers comment generation
               sx={{ marginTop: "10px" }}
             >
               Generate Comment
             </Button>
+
             {data ? (
-              <Tooltip title="copy comment" placement="right">
-                <IconButton
-                  sx={{ marginTop: "20px" }}
-                  id="shareButton"
-                  onClick={handleClick}
-                  color="primary"
-                >
-                  <ShareIcon />
-                </IconButton>
-                :null
-              </Tooltip>
+              <>
+                {/* Tooltip with an IconButton for copying the comment to the clipboard */}
+                <Tooltip title="copy comment" placement="right">
+                  <IconButton
+                    sx={{ marginTop: "20px" }}
+                    id="shareButton"
+                    onClick={handleClick} // Handles the copy action
+                    color="primary"
+                  >
+                    <ShareIcon />
+                  </IconButton>
+                </Tooltip>
+
+                {/* Textarea for displaying generated data/comment */}
+                <textarea
+                  value={data}
+                  readOnly // Makes the textarea read-only
+                  style={{
+                    marginTop: "20px",
+                    width: "70%",
+                    height: "150px",
+                    padding: "10px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+                    resize: "none", // Prevent resizing
+                    fontSize: "16px",
+                    lineHeight: "1.5",
+                    fontFamily: "Arial, sans-serif",
+                  }}
+                />
+              </>
             ) : null}
           </>
         ) : (
+          // Circular progress indicator shown during comment generation
           <CircularProgress />
         )}
 
+        {/* Snackbar notification for when a comment is copied */}
         <Snackbar
-          message="Comment Copied to clibboard"
+          message="Comment Copied to clipboard"
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           autoHideDuration={2000}
-          onClose={() => setOpen(false)}
-          open={open}
+          onClose={() => setOpen(false)} // Closes the snackbar
+          open={open} // Controls the snackbar's visibility
         />
-        <Typography
-          sx={{ fontSize: "20px", width: "70%", marginBottom: "50px" }}
-        >
-          {data}
-        </Typography>
 
+        {/* Button to restart or clear the generated data/comment */}
+        <br />
         {data ? (
           <Button
-            onClick={restart}
+            onClick={restart} // Triggers a restart or clearing of the data
             sx={{ marginBottom: "20px" }}
             variant="contained"
             color="error"
