@@ -27,12 +27,14 @@ const AssignmentData = ({
               <TextField 
               multiline fullWidth variant='outlined' 
               sx={{margin:'10px'}}
+              defaultValue = {assignmentData[assignmentData.indexOf(item)].assignment}
               onChange={e=>{changeAssignmentName(assignmentData.indexOf(item),e.target.value)}} 
               label="Assignment Name" >
               </TextField>
       
               <TextField  
               sx={{margin:'10px'}}
+              defaultValue = {assignmentData[assignmentData.indexOf(item)].comment}
               multiline fullWidth 
               onChange={e=>{changeAssignmentComment(assignmentData.indexOf(item),e.target.value)}}
               label="Comment"></TextField>
