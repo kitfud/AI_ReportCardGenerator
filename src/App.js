@@ -11,7 +11,7 @@ import {
   Snackbar,
   IconButton,
   CircularProgress,
-  Tooltip
+  Tooltip,
 } from "@mui/material"
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ShareIcon from "@mui/icons-material/Share";
@@ -151,6 +151,7 @@ async function runChat() {
 }
 
 const addAssignment = ()=>{
+  console.log("Assignment Data",assignmentData)
   setAssignmentData(assignmentData.length>0?assignmentData=>[...assignmentData,{'assignment':'','comment':''}]:[{'assignment':'','comment':''}])
 }
 
