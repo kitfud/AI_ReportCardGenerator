@@ -12,6 +12,7 @@ import {
   IconButton,
   CircularProgress,
   Tooltip,
+  Slider
 } from "@mui/material"
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ShareIcon from "@mui/icons-material/Share";
@@ -26,6 +27,7 @@ const [name,handleName] = useState("")
 const [grade,handleGrade] = useState("")
 
 const [generating, setGenerating] = useState(false)
+const [length,setCommentLength] = useState(6)
 
 useEffect(()=>{
 setGenerating(false)
@@ -35,7 +37,8 @@ setGenerating(false)
 // node --version # Should be >= 18
 // npm install @google/generative-ai
 const createMessage = ()=>{
-  let input = `Student's Name:${name}, Overall Grade:${grade},`
+  let commentData= `Make sure the comment is no longer than ${length} setances long. Use the following data:`
+  let input = commentData + `Student's Name:${name}, Overall Grade:${grade},`
 
   assignmentData.forEach((element)=>{
     let dataString = `Assignment: ${element.assignment},Comment: ${element.comment};`
@@ -231,18 +234,36 @@ deleteAssignments={deleteAssignments}
 {
   !generating?
   <>
-<Button 
+  <Box sx={{width:'20%',height:'50%'}}>
+    <Typography>Comment Length [Sentances]:</Typography>
+  <Slider
+  onChange = {(e)=> setCommentLength(e.target.value)}
+  aria-label="Comment Length"
+  defaultValue={length}
+  valueLabelDisplay="auto"
+  shiftStep={3}
+  step={1}
+  marks
+  min={3}
+  max={10}
+/>
+  </Box>
+    {
+    name?
+    <Button 
     variant='contained' 
     color="success"
     onClick={runChat}
-    sx={{marginTop:'10px'}}>Generate Comment</Button>
+    sx={{marginTop:'10px'}}>Generate Comment</Button>:null
+    }
+
       {
         data?
     <Tooltip title="copy comment" placement="right">
     
     <IconButton sx={{marginTop:'20px'}} id="shareButton" onClick={handleClick} color="primary">
         <ShareIcon />
-      </IconButton>:null
+      </IconButton>
    
     </Tooltip>:null
       }
