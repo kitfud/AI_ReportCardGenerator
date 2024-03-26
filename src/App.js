@@ -235,7 +235,7 @@ deleteAssignments={deleteAssignments}
   !generating?
   <>
   <Box sx={{width:'20%',height:'50%'}}>
-    <Typography>Comment Length [Sentances]:</Typography>
+    <Typography>Comment Length [Sentences]:</Typography>
   <Slider
   onChange = {(e)=> setCommentLength(e.target.value)}
   aria-label="Comment Length"
