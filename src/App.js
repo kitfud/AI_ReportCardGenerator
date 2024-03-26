@@ -1,8 +1,9 @@
 
 import './App.css';
 import React,{useState,useEffect} from 'react'
-
-import {  Box, 
+import AssignmentData from './AssignmentData';
+import {
+  Box, 
   TextField, 
   Typography, 
   Card, 
@@ -14,7 +15,7 @@ import {  Box,
 } from "@mui/material"
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ShareIcon from "@mui/icons-material/Share";
-import DeleteIcon from '@mui/icons-material/Delete';
+
 
 function App() {
 
@@ -55,6 +56,9 @@ const MODEL_NAME = "gemini-1.0-pro";
 const API_KEY = process.env.REACT_APP_GOOGLE_API;
 
 async function runChat() {
+ 
+  setGenerating(true)
+  
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
@@ -120,7 +124,7 @@ async function runChat() {
 
 
   let message = createMessage()
-  setGenerating(true)
+  
   const result = await chat.sendMessage(message);
   const response = result.response;
 
@@ -147,7 +151,6 @@ async function runChat() {
 }
 
 const addAssignment = ()=>{
-  console.log(assignmentData)
   setAssignmentData(assignmentData.length>0?assignmentData=>[...assignmentData,{'assignment':'','comment':''}]:[{'assignment':'','comment':''}])
 }
 
@@ -166,23 +169,22 @@ const handleClick = () => {
   navigator.clipboard.writeText(data);
 };
 
-const deleteAssignment = (index)=>{
-console.log(index)
+const deleteAssignments = ()=>{
 
-  console.log("AssignmentData",assignmentData)
-  let newData = assignmentData.splice(index,1)
-  console.log("newData",newData)
-  setAssignmentData(newData)
+  setAssignmentData([])
 
 }
 
+const restart=()=>{
+  window.location.reload()
+}
 
 
   return (
     <div className="App">
       <header className="App-header">
       <Typography sx={{fontSize:'30px'}} variant='h1'>Report Generator</Typography>
-        <Card sx={{margin:'20px',width:'80%'}}>
+        <Card sx={{margin:'20px',width:'300px',borderRadius:'2%'}}>
           <Box>
           <TextField  
         onChange = {(e)=>{handleName(e.target.value)}}
@@ -208,29 +210,17 @@ console.log(index)
 </Button>
 </Box>
       
-{
-  assignmentData.length?
-  assignmentData.map(item=>{
-    return (
-     
-      <Box sx={{margin:'20px'}} key={assignmentData.indexOf(item)}>
-        <TextField multiline fullWidth variant='outlined' 
-        sx={{margin:'10px'}}
-        defaultValue={item.assignment} 
-        onChange={e=>{changeAssignmentName(assignmentData.indexOf(item),e.target.value)}} 
-        label="Assignment Name" >
-        </TextField>
-        <TextField 
-        sx={{margin:'10px'}}
-        multiline fullWidth defaultValue={item.comment}
-        onChange={e=>{changeAssignmentComment(assignmentData.indexOf(item),e.target.value)}}
-        label="Comment"></TextField>
 
-      </Box>
-     
-    )
-  }):null
-}
+<AssignmentData 
+assignmentData={assignmentData}
+changeAssignmentComment={changeAssignmentComment}
+changeAssignmentName={changeAssignmentName}
+deleteAssignments={deleteAssignments}
+/>
+
+
+
+
 
 
         </Card>
@@ -245,11 +235,16 @@ console.log(index)
     color="success"
     onClick={runChat}
     sx={{marginTop:'10px'}}>Generate Comment</Button>
+      {
+        data?
     <Tooltip title="copy comment" placement="right">
+    
     <IconButton sx={{marginTop:'20px'}} id="shareButton" onClick={handleClick} color="primary">
         <ShareIcon />
-      </IconButton>
-    </Tooltip>
+      </IconButton>:null
+   
+    </Tooltip>:null
+      }
   </>
     :<CircularProgress/>
 }
@@ -261,8 +256,18 @@ console.log(index)
         onClose={() => setOpen(false)}
         open={open}
       />
-      <Typography sx={{fontSize:'20px',width:'70%',marginBottom:'80px'}}>{data}</Typography>
+      <Typography sx={{fontSize:'20px',width:'70%',marginBottom:'50px'}}>
+        {data}
+      </Typography>
     
+    {
+      data?
+      <Button 
+      onClick={restart}
+      sx={{marginBottom:'20px'}} 
+      variant="contained" 
+      color="error">RESTART COMMENT</Button>:null
+      }
     
       </header>
     </div>
