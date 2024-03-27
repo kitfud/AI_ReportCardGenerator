@@ -1,6 +1,6 @@
 
 import './App.css';
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useMemo} from 'react'
 import AssignmentData from './AssignmentData';
 import {
   Box, 
@@ -18,8 +18,37 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ShareIcon from "@mui/icons-material/Share";
 import Speech from 'react-speech';
 import style from './style.js'
-
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim"; 
+import particleOptions from './particleOptions.js';
 function App() {
+  const [init, setInit] = useState(false);
+
+    // this should be run only once per application lifetime
+    useEffect(() => {
+      initParticlesEngine(async (engine) => {
+        // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
+        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+        // starting from v2 you can add only the features you need reducing the bundle size
+        //await loadAll(engine);
+        //await loadFull(engine);
+        await loadSlim(engine);
+        //await loadBasic(engine);
+      }).then(() => {
+        setInit(true);
+      });
+    }, []);
+
+    const particlesLoaded = (container) => {
+      console.log(container);
+    };
+
+    const options = useMemo(
+      () => (
+     particleOptions
+      ),
+      [],
+    );
 
 const [data,setData] = useState(null)
 
@@ -186,6 +215,16 @@ const restart=()=>{
 
 
   return (
+<>
+{
+    init?
+    
+      <Particles
+        id="tsparticles"
+        particlesLoaded={particlesLoaded}
+        options={options}
+      />:null
+   }
     <div className="App">
       <header className="App-header">
       <Typography sx={{fontSize:'30px',marginTop:'20px'}} variant='h1'>Report Generator</Typography>
@@ -235,6 +274,8 @@ deleteAssignments={deleteAssignments}
 {
   !generating?
   <>
+ 
+  
   <Box sx={{width:'20%',height:'50%'}}>
     <Typography>Comment Length [Sentences]:</Typography>
   <Slider
@@ -309,7 +350,9 @@ deleteAssignments={deleteAssignments}
     
       </header>
     </div>
+    </>
   );
+ 
 }
 
 export default App;
