@@ -227,7 +227,7 @@ const restart=()=>{
    }
     <div className="App">
       <header className="App-header">
-      <Typography sx={{fontSize:'30px',marginTop:'20px'}} variant='h1'>Report Generator</Typography>
+      <Typography sx={{fontSize:'50px',marginTop:'20px',fontFamily: "Bebas Neue"}} variant='h1'>Report Generator</Typography>
         <Card sx={{margin:'20px',width:'300px',borderRadius:'2%'}}>
           <Box>
           <TextField  
@@ -247,7 +247,7 @@ const restart=()=>{
 
 
 
-<Box >
+<Box sx={{marginTop:"10px"}}>
   <Typography>Add Assignment</Typography>
 <Button  onClick={addAssignment}>
 <AddCircleIcon sx={{margin:'15px'}}/>
