@@ -16,7 +16,8 @@ import {
 } from "@mui/material"
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ShareIcon from "@mui/icons-material/Share";
-
+import Speech from 'react-speech';
+import style from './style.js'
 
 function App() {
 
@@ -187,7 +188,7 @@ const restart=()=>{
   return (
     <div className="App">
       <header className="App-header">
-      <Typography sx={{fontSize:'30px'}} variant='h1'>Report Generator</Typography>
+      <Typography sx={{fontSize:'30px',marginTop:'20px'}} variant='h1'>Report Generator</Typography>
         <Card sx={{margin:'20px',width:'300px',borderRadius:'2%'}}>
           <Box>
           <TextField  
@@ -207,10 +208,10 @@ const restart=()=>{
 
 
 
-<Box>
+<Box >
   <Typography>Add Assignment</Typography>
-<Button onClick={addAssignment}>
-<AddCircleIcon />
+<Button  onClick={addAssignment}>
+<AddCircleIcon sx={{margin:'15px'}}/>
 </Button>
 </Box>
       
@@ -259,13 +260,28 @@ deleteAssignments={deleteAssignments}
 
       {
         data?
-    <Tooltip title="copy comment" placement="right">
+        <>
+        <Tooltip title="proofread comment" placement="left">
+        <Box sx={{marginTop:'20px'}}>
+        
+        <Speech
+      styles={style}
+      stop={true} 
+      text={data}/>
+        
+      </Box>
+        </Tooltip>
+      
+        
+
+    <Tooltip title="copy comment to clipboard" placement="right">
     
     <IconButton sx={{marginTop:'20px'}} id="shareButton" onClick={handleClick} color="primary">
         <ShareIcon />
       </IconButton>
    
-    </Tooltip>:null
+    </Tooltip>
+    </>:null
       }
   </>
     :<CircularProgress/>
