@@ -12,7 +12,8 @@ import {
   IconButton,
   CircularProgress,
   Tooltip,
-  Slider
+  Slider,
+
 } from "@mui/material"
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ShareIcon from "@mui/icons-material/Share";
@@ -21,6 +22,10 @@ import style from './style.js'
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim"; 
 import particleOptions from './particleOptions.js';
+import Music from './Music.js';
+
+
+
 function App() {
   const [init, setInit] = useState(false);
 
@@ -216,6 +221,7 @@ const restart=()=>{
 
   return (
 <>
+
 {
     init?
     
@@ -225,7 +231,12 @@ const restart=()=>{
         options={options}
       />:null
    }
+
     <div className="App">
+      
+      <Music/>
+   
+ 
       <header className="App-header">
       <Typography sx={{fontSize:'50px',marginTop:'20px',fontFamily: "Bebas Neue"}} variant='h1'>Report Generator</Typography>
         <Card sx={{margin:'20px',width:'300px',borderRadius:'2%'}}>
