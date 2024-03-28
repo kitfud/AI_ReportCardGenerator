@@ -31,10 +31,10 @@ const toggleMusic = (event)=>{
     <>
     {
     music?
-    <Fab sx={{position:'absolute',top:'3%',right:'5%'}}>
+    <Fab sx={{position:'absolute',top:'15%',right:'5%'}}>
     <MusicNoteIcon onClick={toggleMusic}/>  
     </Fab>:
-    <Fab sx={{position:'absolute',top:'3%',right:'5%'}}>
+    <Fab sx={{position:'absolute',top:'15%',right:'5%'}}>
     <MusicOffIcon onClick={toggleMusic}/>
     </Fab>
 }
