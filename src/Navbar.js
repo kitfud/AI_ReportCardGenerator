@@ -30,7 +30,7 @@ const Navbar = () => {
   return (
     <AppBar
     position='static'
-    sx={{width:'100%',height:'70px'}}
+    sx={{width:'100%',height:'70px',opacity:'80%'}}
     >
      
        <Container maxWidth="xl">
