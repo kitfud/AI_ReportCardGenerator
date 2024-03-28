@@ -28,6 +28,59 @@ import { EnhancedEncryption } from '@mui/icons-material';
 
 const LessonPlanner = () => {
 
+    // node --version # Should be >= 18
+// npm install @google/generative-ai
+
+const {
+    GoogleGenerativeAI,
+    HarmCategory,
+    HarmBlockThreshold,
+  } = require("@google/generative-ai");
+  
+  const MODEL_NAME = "gemini-1.0-pro";
+  const API_KEY = process.env.REACT_APP_GOOGLE_API;
+  
+  async function run(input) {
+    const genAI = new GoogleGenerativeAI(API_KEY);
+    const model = genAI.getGenerativeModel({ model: MODEL_NAME });
+  
+    const generationConfig = {
+      temperature: 0.9,
+      topK: 1,
+      topP: 1,
+      maxOutputTokens: 2048,
+    };
+  
+    const safetySettings = [
+      {
+        category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+      },
+    ];
+  
+    const result = await model.generateContent([input]);
+  
+    const response = result.response;
+    const responseText = response.text()
+    console.log(responseText);
+    setAIResponse(responseText)
+   
+  }
+  
+ 
+
     const [environment, setEnvironment] = React.useState('');
     const [valueRadio, setValueRadio] = React.useState('no');
     const [grade,setGrade] = useState(null)
@@ -35,6 +88,8 @@ const LessonPlanner = () => {
     const [topic,setTopic] = useState(null)
     const [lessonLength,setLessonLength] = useState(null)
     const [priorKnowledge,setPriorKnowledge] = useState(null)
+    const [aiquery,setAIQuery] = useState(null)
+    const [airesponse,setAIResponse] = useState(null)
 
     const handleChange = (event) => {
         setEnvironment(event.target.value);
@@ -75,15 +130,74 @@ setValueRadio(event.target.value);
 };
 
 
-
-const [aiquery,setAIQuery] = useState(null)
-
-const generateLessonPlan =(event)=>{
-let prompt = `Create a single JSON object for a single lesson plan. Specifically for ${grade} grade level students undertaking a ${subject} unit to learn about ${topic}.`
+const generateLessonPlan =()=>{
+let prompt = `Create a single lesson plan in JSON format so the sections can easily be parsed out. Specifically for ${grade} grade level students undertaking a ${subject} unit to learn about ${topic}.`
+let exampleJSON = `Here is an example of what the structure of the JSON object should look like: {
+    "lessonPlan": {
+      "gradeLevel": 6,
+      "subject": "Math",
+      "unit": "Multiplication",
+      "context": "USA Independent Private School",
+      "SWABAT": [
+        "Explain the concept of multiplication as repeated addition.",
+        "Use multiplication facts to solve simple multiplication problems.",
+        "Apply multiplication to real-world situations."
+      ],
+      "resources": [
+        "Whiteboard or chart paper",
+        "Markers",
+        "Small objects (e.g., counters, beans, cubes)",
+        "Multiplication flashcards"
+      ],
+      "assessments": [
+        "Exit ticket: Students will solve a short multiplication problem independently.",
+        "Observation: Teacher will observe student participation and understanding during activities."
+      ],
+      "bigIdeas": {
+        "Multiplication is a mathematical operation that represents repeated addition.",
+        "Multiplication can be used to solve a variety of real-world problems."
+      },
+      "timeframe": 50,
+      "sections": [
+        {
+          "type": "Opening",
+          "pacing": 5,
+          "activities": [
+            "Review prior knowledge: Ask students to share what they know about multiplication.",
+            "Introduce the concept of multiplication as repeated addition: Use concrete materials (e.g., counters) to demonstrate how multiplication represents adding the same number multiple times."
+          ]
+        },
+        {
+          "type": "Activity",
+          "pacing": 20,
+          "activities": [
+            "Multiplication facts practice: Lead students in practicing multiplication facts using flashcards or a game.",
+            "Word problem solving: Present students with simple word problems that require them to use multiplication to find the solution."
+          ]
+        },
+        {
+          "type": "Discussion",
+          "pacing": 15,
+          "activities": [
+            "Discuss the application of multiplication in real-world situations: Ask students to identify examples of how multiplication is used in everyday life.",
+            "Introduce strategies for solving multiplication problems: Share different strategies (e.g., skip counting, breaking down numbers) that students can use to solve multiplication problems more efficiently."
+          ]
+        },
+        {
+          "type": "Closing",
+          "pacing": 10,
+          "activities": [
+            "Review the key concepts of the lesson: Summarize the main points about multiplication discussed in the lesson.",
+            "Exit ticket: Distribute an exit ticket with a multiplication problem for students to solve independently."
+          ]
+        }
+      ]
+    }
+  }`
 let environmentDetails = `The lesson plan should be appropriate for a ${environment} context.`
 let addedContext = `The lesson plan should consider details about students prior knowledge:${priorKnowledge}.`
-let timeframe = `The timeframe for the lesson is ${lessonLength} minutes long.`
-let prompt2 = 'The lesson plan should include an opening, activity, discussion, and closing portion, along with specific SWABAT objectives, resources, and assessments with pacing guideliens.Also, provide a section on the lesson\'s Big Ideas- overarching concept to be taught.'
+let timeframe = `The timeframe for the lesson is ${lessonLength} minutes long. `
+let prompt2 = 'The lesson plan should include an opening, activity, discussion, and closing portion; include pacing details for each section. At beginning of lesson plan include specific SWABAT objectives, resources, and assessments.Also, provide a section on the lesson\'s Big Ideas- overarching concept to be taught.'
 
 function checkEnvironment(){
     if(environment!==""&& environment!=="N/A"){
@@ -103,10 +217,10 @@ function checkContext(){
     }
 }
 
-let AIQuery = prompt + checkEnvironment() + checkContext()+ timeframe+ prompt2
+let AIQuery = prompt + exampleJSON+ checkEnvironment() + checkContext()+ timeframe+ prompt2
 console.log(AIQuery)
 setAIQuery(AIQuery)
-
+run(AIQuery)
 }
 
   return (
@@ -195,7 +309,7 @@ sx={{padding:'20px',width:'40%'}} multiline
         </header> 
    </div>
 
-   {aiquery}
+   {airesponse}
 
     </>
   )
