@@ -29,6 +29,10 @@ import { dividerClasses } from '@mui/material';
             element:<App/>
         },
         {
+            path:'/lessonplanner',
+            element:<LessonPlanner/>
+        },
+        {
             path:'/papergrader',
             element:<PaperGrader/>
         }
