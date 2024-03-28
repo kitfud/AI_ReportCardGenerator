@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import ErrorPage from './ErrorPage';
 import LandingPage from './LandingPage';
 import LessonPlanner from './LessonPlanner';
+import PaperGrader from './PaperGrader';
 import {
     createBrowserRouter,
     RouterProvider,
@@ -28,8 +29,8 @@ import { dividerClasses } from '@mui/material';
             element:<App/>
         },
         {
-            path:'/lessonplanner',
-            element:<LessonPlanner/>
+            path:'/papergrader',
+            element:<PaperGrader/>
         }
       ]
     },
