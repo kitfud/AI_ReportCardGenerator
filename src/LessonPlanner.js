@@ -71,11 +71,12 @@ const {
     ];
   
     const result = await model.generateContent([input]);
-  
+   
     const response = result.response;
     const responseText = response.text()
     console.log(responseText);
     setAIResponse(responseText)
+    setProcessing(false)
    
   }
   
@@ -90,6 +91,7 @@ const {
     const [priorKnowledge,setPriorKnowledge] = useState(null)
     const [aiquery,setAIQuery] = useState(null)
     const [airesponse,setAIResponse] = useState(null)
+    const [processing,setProcessing] = useState(false)
 
     const handleChange = (event) => {
         setEnvironment(event.target.value);
@@ -131,6 +133,9 @@ setValueRadio(event.target.value);
 
 
 const generateLessonPlan =()=>{
+
+setProcessing(true)
+
 let prompt = `Create a single lesson plan in JSON format so the sections can easily be parsed out. Specifically for ${grade} grade level students undertaking a ${subject} unit to learn about ${topic}.`
 let exampleJSON = `Here is an example of what the structure of the JSON object should look like: {
     "lessonPlan": {
@@ -300,11 +305,16 @@ sx={{padding:'20px',width:'40%'}} multiline
     </Box>
     : null
 }
+{
+!processing?
 <Box sx={{margin:'20px'}}>
     <Button 
     onClick={generateLessonPlan}
     variant="contained">GENERATE LESSON PLAN</Button>
-</Box>
+</Box>:<Box>
+<CircularProgress/>
+    </Box>
+}
    </Card>
         </header> 
    </div>
