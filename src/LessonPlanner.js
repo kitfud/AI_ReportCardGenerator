@@ -136,69 +136,73 @@ const generateLessonPlan =()=>{
 
 setProcessing(true)
 
-let prompt = `Create a single lesson plan in JSON format so the sections can easily be parsed out. Specifically for ${grade} grade level students undertaking a ${subject} unit to learn about ${topic}.`
+let prompt = `Create a lesson plan in JSON format so the sections can easily be parsed out. Don't put any trailing characters/words or symbols before the JSON object begins (specifically-before the first '{' symbol). Specifically for ${grade} grade level students undertaking a ${subject} unit to learn about ${topic}.`
 let exampleJSON = `Here is an example of what the structure of the JSON object should look like: {
-    "lessonPlan": {
-      "gradeLevel": 6,
-      "subject": "Math",
-      "unit": "Multiplication",
-      "context": "USA Independent Private School",
-      "SWABAT": [
-        "Explain the concept of multiplication as repeated addition.",
-        "Use multiplication facts to solve simple multiplication problems.",
-        "Apply multiplication to real-world situations."
-      ],
-      "resources": [
-        "Whiteboard or chart paper",
-        "Markers",
-        "Small objects (e.g., counters, beans, cubes)",
-        "Multiplication flashcards"
-      ],
-      "assessments": [
-        "Exit ticket: Students will solve a short multiplication problem independently.",
-        "Observation: Teacher will observe student participation and understanding during activities."
-      ],
-      "bigIdeas": {
-        "Multiplication is a mathematical operation that represents repeated addition.",
-        "Multiplication can be used to solve a variety of real-world problems."
-      },
-      "timeframe": 50,
-      "sections": [
-        {
-          "type": "Opening",
-          "pacing": 5,
-          "activities": [
-            "Review prior knowledge: Ask students to share what they know about multiplication.",
-            "Introduce the concept of multiplication as repeated addition: Use concrete materials (e.g., counters) to demonstrate how multiplication represents adding the same number multiple times."
-          ]
-        },
-        {
-          "type": "Activity",
-          "pacing": 20,
-          "activities": [
-            "Multiplication facts practice: Lead students in practicing multiplication facts using flashcards or a game.",
-            "Word problem solving: Present students with simple word problems that require them to use multiplication to find the solution."
-          ]
-        },
-        {
-          "type": "Discussion",
-          "pacing": 15,
-          "activities": [
-            "Discuss the application of multiplication in real-world situations: Ask students to identify examples of how multiplication is used in everyday life.",
-            "Introduce strategies for solving multiplication problems: Share different strategies (e.g., skip counting, breaking down numbers) that students can use to solve multiplication problems more efficiently."
-          ]
-        },
-        {
-          "type": "Closing",
-          "pacing": 10,
-          "activities": [
-            "Review the key concepts of the lesson: Summarize the main points about multiplication discussed in the lesson.",
-            "Exit ticket: Distribute an exit ticket with a multiplication problem for students to solve independently."
+    {
+        "lessonPlan": {
+          "gradeLevel": 7,
+          "subject": "English",
+          "unit": "Reading",
+          "context": "USA Public School",
+          "SWABAT": [
+            "Analyze a variety of literary text features.",
+            "Apply reading strategies to understand text.",
+            "Write a paragraph summarizing a text."
+          ],
+          "resources": [
+            "Literary text (e.g., short story, article, poem)",
+            "Whiteboard or chart paper",
+            "Markers",
+            "Sticky notes",
+            "Writing paper"
+          ],
+          "assessments": [
+            "Text feature analysis: Students will identify and explain different text features in a literary text.",
+            "Reading comprehension quiz: Students will answer questions about the text to demonstrate their understanding.",
+            "Summary writing: Students will write a paragraph summarizing the main points of the text."
+          ],
+          "bigIdeas": [
+           "Reading is a complex process that involves understanding different text features.",
+            "Applying reading strategies can enhance comprehension and engagement.",
+            "Writing a summary is an effective way to synthesize and recall information from a text."
+          ],
+          "timeframe": 60,
+          "sections": [
+            {
+              "type": "Opening",
+              "pacing": 10,
+              "activities": [
+                "Review prior knowledge: Ask students about different text features they have encountered in previous reading experiences.",
+                "Introduce text feature analysis: Explain the purpose and types of text features, and their importance for understanding a text."
+              ]
+            },
+            {
+              "type": "Activity",
+              "pacing": 25,
+              "activities": [
+                "Text feature scavenger hunt: Provide students with a copy of the literary text and have them identify and explain different text features using sticky notes.",
+                "Collaborative text discussion: Divide students into small groups to discuss and share their findings from the scavenger hunt, focusing on the significance of each text feature."
+              ]
+            },
+            {
+              "type": "Discussion",
+              "pacing": 15,
+              "activities": [
+                "Reading strategy application: Introduce or review reading strategies such as visualizing, inferencing, and making connections.",
+                "Guided reading: Lead students in applying reading strategies to a specific section of the text, modeling how to make predictions, ask questions, and connect to prior knowledge."
+              ]
+            },
+            {
+              "type": "Closing",
+              "pacing": 10,
+              "activities": [
+                "Summary writing: Have students write a paragraph summarizing the main points of the text, focusing on the key ideas and supporting details.",
+                "Exit ticket: Distribute an exit ticket with a question or prompt that assesses students' understanding of the reading strategies and text features discussed in the lesson."
+              ]
+            }
           ]
         }
-      ]
-    }
-  }`
+      }`
 let environmentDetails = `The lesson plan should be appropriate for a ${environment} context.`
 let addedContext = `The lesson plan should consider details about students prior knowledge:${priorKnowledge}.`
 let timeframe = `The timeframe for the lesson is ${lessonLength} minutes long. `
@@ -226,6 +230,113 @@ let AIQuery = prompt + exampleJSON+ checkEnvironment() + checkContext()+ timefra
 console.log(AIQuery)
 setAIQuery(AIQuery)
 run(AIQuery)
+}
+
+const formatLesson = (lessonDetails)=>{
+    if(lessonDetails){
+    //let objectLesson = JSON.parse(lessonDetails)
+    let parsedDetails = ""
+    let jsonBegin = false
+    for(let i = 0; i<lessonDetails.length;i++){
+        if(lessonDetails[i]=='{'){
+            jsonBegin = true
+        }
+        if(jsonBegin){
+            parsedDetails +=lessonDetails[i]
+        }
+    }
+    let parsed = JSON.parse(parsedDetails)
+    console.log("parsed",parsed.lessonPlan)
+    const gradeLevel = parsed.lessonPlan.gradeLevel
+    const subject = parsed.lessonPlan.subject
+    const unit = parsed.lessonPlan.unit
+    const context = parsed.lessonPlan.context
+    const learningGoals = parsed.lessonPlan.SWABAT
+    const assessments = parsed.lessonPlan.assessments
+    const bigIdeas = parsed.lessonPlan.bigIdeas
+    const timeframe = parsed.lessonPlan.timeframe
+    const resources = parsed.lessonPlan.resources
+    const sections = parsed.lessonPlan.sections
+
+    return(
+        <>
+        <Typography>Lesson Details</Typography>
+        <ul>
+            <li>
+                Grade Level: {gradeLevel}
+            </li>
+            <li>
+                Subject: {subject}
+            </li>
+            <li>
+                Unit: {unit}
+            </li>
+            <li>
+                Context: {context}
+            </li>
+            <li>
+                Lesson Timeframe:{timeframe} minutes
+            </li>
+        </ul>
+        <Typography>Learning Goals:</Typography>
+        {
+            learningGoals.map(item=>{
+                return(
+                    <div>{item}</div>
+                )
+            })
+        }
+        <Typography>Big Ideas:</Typography>
+        {
+            bigIdeas.map(item=>{
+                return(
+                   <div> {item}</div>
+                )
+            })
+        }
+    
+
+<Typography sx={{marginTop:'20px'}}>Resources:</Typography>
+        {
+            resources.map(item=>{
+                return(
+                    <div>{item}</div>
+                )
+            })
+        }
+
+<Typography sx={{marginTop:'20px'}}>Sequence:</Typography>
+
+{
+    sections.map(item=>{
+        return(
+        <>
+        <div>{item.type} / pacing:{item.pacing} min</div>
+         {item.activities.map(i=>( 
+        <ul>
+            <li>{i}</li>
+        </ul>
+    ))
+    }
+        </>
+
+        )
+    })
+    }
+
+<Typography>Assessements:</Typography>
+        {
+            assessments.map(item=>{
+                return(
+                    <div>{item}</div>
+                )
+            })
+        }
+    
+        </>
+    )
+    }
+
 }
 
   return (
@@ -318,8 +429,16 @@ sx={{padding:'20px',width:'40%'}} multiline
    </Card>
         </header> 
    </div>
+   <center>
 
-   {airesponse}
+<Card sx={{backgroundColor:"whitesmoke",width:'80%'}}>
+{formatLesson(airesponse)}
+</Card>
+  
+   </center>
+  
+
+  
 
     </>
   )
