@@ -1,0 +1,65 @@
+{
+    "lessonPlan": {
+      "gradeLevel": 7,
+      "subject": "English",
+      "unit": "Reading",
+      "context": "USA Public School",
+      "SWABAT": [
+        "Analyze a variety of literary text features.",
+        "Apply reading strategies to understand text.",
+        "Write a paragraph summarizing a text."
+      ],
+      "resources": [
+        "Literary text (e.g., short story, article, poem)",
+        "Whiteboard or chart paper",
+        "Markers",
+        "Sticky notes",
+        "Writing paper"
+      ],
+      "assessments": [
+        "Text feature analysis: Students will identify and explain different text features in a literary text.",
+        "Reading comprehension quiz: Students will answer questions about the text to demonstrate their understanding.",
+        "Summary writing: Students will write a paragraph summarizing the main points of the text."
+      ],
+      "bigIdeas": [
+       "Reading is a complex process that involves understanding different text features.",
+        "Applying reading strategies can enhance comprehension and engagement.",
+        "Writing a summary is an effective way to synthesize and recall information from a text."
+      ],
+      "timeframe": 60,
+      "sections": [
+        {
+          "type": "Opening",
+          "pacing": 10,
+          "activities": [
+            "Review prior knowledge: Ask students about different text features they have encountered in previous reading experiences.",
+            "Introduce text feature analysis: Explain the purpose and types of text features, and their importance for understanding a text."
+          ]
+        },
+        {
+          "type": "Activity",
+          "pacing": 25,
+          "activities": [
+            "Text feature scavenger hunt: Provide students with a copy of the literary text and have them identify and explain different text features using sticky notes.",
+            "Collaborative text discussion: Divide students into small groups to discuss and share their findings from the scavenger hunt, focusing on the significance of each text feature."
+          ]
+        },
+        {
+          "type": "Discussion",
+          "pacing": 15,
+          "activities": [
+            "Reading strategy application: Introduce or review reading strategies such as visualizing, inferencing, and making connections.",
+            "Guided reading: Lead students in applying reading strategies to a specific section of the text, modeling how to make predictions, ask questions, and connect to prior knowledge."
+          ]
+        },
+        {
+          "type": "Closing",
+          "pacing": 10,
+          "activities": [
+            "Summary writing: Have students write a paragraph summarizing the main points of the text, focusing on the key ideas and supporting details.",
+            "Exit ticket: Distribute an exit ticket with a question or prompt that assesses students' understanding of the reading strategies and text features discussed in the lesson."
+          ]
+        }
+      ]
+    }
+  }
