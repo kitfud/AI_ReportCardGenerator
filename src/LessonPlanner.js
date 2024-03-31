@@ -168,7 +168,7 @@ const generateLessonPlan =()=>{
 setProcessing(true)
 
 let prompt = `Create a lesson plan in JSON format so the sections can easily be parsed out. Don't put any trailing characters/words or symbols before the JSON object begins (specifically-before the first '{' symbol). Specifically for ${grade} grade level students undertaking a ${subject} unit to learn about ${topic}.`
-let exampleJSON = `Here is an example of what the structure of the JSON object should look like: {
+let exampleJSON = `Here is an example of what the structure of the JSON object should look like: 
     {
         "lessonPlan": {
           "gradeLevel": 7,
