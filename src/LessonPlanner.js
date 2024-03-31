@@ -2,6 +2,7 @@ import React from 'react'
 import { useState,useEffect,useMemo } from 'react';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim"; 
+import ReactCardFlip from 'react-card-flip';
 import particleOptions from './particleOptions.js';
 import {
     Box, 
@@ -77,6 +78,7 @@ const {
     console.log(responseText);
     setAIResponse(responseText)
     setProcessing(false)
+    setFlip(true)
    
   }
   
@@ -92,6 +94,8 @@ const {
     const [aiquery,setAIQuery] = useState(null)
     const [airesponse,setAIResponse] = useState(null)
     const [processing,setProcessing] = useState(false)
+
+    const [flip, setFlip] = useState(false);
 
     const handleChange = (event) => {
         setEnvironment(event.target.value);
@@ -246,7 +250,7 @@ const formatLesson = (lessonDetails)=>{
         }
     }
     let parsed = JSON.parse(parsedDetails)
-    console.log("parsed",parsed.lessonPlan)
+    // console.log("parsed",parsed.lessonPlan)
     const gradeLevel = parsed.lessonPlan.gradeLevel
     const subject = parsed.lessonPlan.subject
     const unit = parsed.lessonPlan.unit
@@ -260,6 +264,7 @@ const formatLesson = (lessonDetails)=>{
 
     return(
         <>
+        <Card sx={{padding:'10px'}}>
         <Typography>Lesson Details</Typography>
         <ul>
             <li>
@@ -286,7 +291,7 @@ const formatLesson = (lessonDetails)=>{
                 )
             })
         }
-        <Typography>Big Ideas:</Typography>
+        <Typography sx={{marginBottom:'20px'}}>Big Ideas:</Typography>
         {
             bigIdeas.map(item=>{
                 return(
@@ -295,7 +300,14 @@ const formatLesson = (lessonDetails)=>{
             })
         }
     
-
+    <Typography sx={{marginBottom:'20px'}}>Assessements:</Typography>
+        {
+            assessments.map(item=>{
+                return(
+                    <div>{item}</div>
+                )
+            })
+        }
 <Typography sx={{marginTop:'20px'}}>Resources:</Typography>
         {
             resources.map(item=>{
@@ -311,7 +323,7 @@ const formatLesson = (lessonDetails)=>{
     sections.map(item=>{
         return(
         <>
-        <div>{item.type} / pacing:{item.pacing} min</div>
+        <div><b>{item.type} </b>/ pacing:{item.pacing} min</div>
          {item.activities.map(i=>( 
         <ul>
             <li>{i}</li>
@@ -324,15 +336,8 @@ const formatLesson = (lessonDetails)=>{
     })
     }
 
-<Typography>Assessements:</Typography>
-        {
-            assessments.map(item=>{
-                return(
-                    <div>{item}</div>
-                )
-            })
-        }
-    
+
+    </Card>
         </>
     )
     }
@@ -341,7 +346,9 @@ const formatLesson = (lessonDetails)=>{
 
   return (
     <>
+     
       {
+        
     init?
       <Particles
         id="tsparticles"
@@ -349,8 +356,12 @@ const formatLesson = (lessonDetails)=>{
         options={options}
       />:null
    }
+
+
     <div className="App">
-    <header className="App-header">
+    <ReactCardFlip isFlipped={flip}
+            flipDirection="vertical">
+  <header className="App-header">
    <Card sx={{margin:'20px',width:'600px',borderRadius:'2%'}}>
     <Typography>Lesson Planner</Typography>
     <Box sx={{marginTop:'20px'}}>
@@ -428,17 +439,29 @@ sx={{padding:'20px',width:'40%'}} multiline
 }
    </Card>
         </header> 
+<center>
+<Card sx={{backgroundColor:"whitesmoke",width:'80%'}}>
+{formatLesson(airesponse)}
+<Button 
+sx={{margin:'20px'}}
+variant="contained" onClick={() => setFlip(!flip)}
+>Back To Lesson Plan Creator</Button>
+</Card>
+</center>
+
+
+
+
+          
+        </ReactCardFlip>
+
+  
    </div>
    <center>
 
-<Card sx={{backgroundColor:"whitesmoke",width:'80%'}}>
-{formatLesson(airesponse)}
-</Card>
-  
-   </center>
-  
 
   
+   </center>
 
     </>
   )
