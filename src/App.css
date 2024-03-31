@@ -6,6 +6,10 @@
 
 }
 
+.hoverColor:hover{
+  background-color: lightblue;
+}
+
 ul {
   list-style-type: none;
 }
