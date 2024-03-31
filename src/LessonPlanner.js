@@ -167,10 +167,11 @@ setValueRadio(event.target.value);
 const generateLessonPlan =()=>{
 
 setProcessing(true)
+let stringExampleData = JSON.stringify(ExampleLessonJSON)
 
 let prompt = `Create a lesson plan in JSON format so the sections can easily be parsed out. Don't put any trailing characters/words or symbols before the JSON object begins (specifically-before the first '{' symbol). Specifically for ${grade} grade level students undertaking a ${subject} unit to learn about ${topic}.`
 let exampleJSON = `Here is an example of what the structure of the JSON object should look like: 
-   ${JSON.stringify(ExampleLessonJSON)}`
+   ${stringExampleData}`
 let environmentDetails = `The lesson plan should be appropriate for a ${environment} context.`
 let addedContext = `The lesson plan should consider details about students prior knowledge:${priorKnowledge}.`
 let timeframe = `The timeframe for the lesson is ${lessonLength} minutes long. `
