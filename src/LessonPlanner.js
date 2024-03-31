@@ -1,10 +1,14 @@
 import React from 'react'
-import { useState,useEffect,useMemo } from 'react';
+import { useState,useEffect,useMemo,useRef } from 'react';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim"; 
 import ReactCardFlip from 'react-card-flip';
 import particleOptions from './particleOptions.js';
+import DownloadIcon from '@mui/icons-material/Download';
+
+import * as htmlToImage from "html-to-image";
 import {
+    
     Box, 
     TextField, 
     Typography, 
@@ -96,6 +100,29 @@ const {
     const [processing,setProcessing] = useState(false)
 
     const [flip, setFlip] = useState(false);
+
+//section of area to take a screenshot of
+const screenshotArea = useRef(null);
+
+const handleLessonDownload = async () => {
+    if (!screenshotArea.current) return;
+    await htmlToImage.toJpeg(screenshotArea.current).then(downloadFile);
+  };
+
+const downloadFile = (image, { name = "lesson-shot", extension = "jpg" } = {}) => {
+    const a = document.createElement("a");
+    a.href = image;
+    a.download = createFileName(extension, name);
+    a.click();
+  };
+
+  const createFileName = (extension = "", ...names) => {
+    if (!extension) {
+      return "";
+    }
+    return `${names.join("")}.${extension}`;
+  };
+  
 
     const handleChange = (event) => {
         setEnvironment(event.target.value);
@@ -265,7 +292,15 @@ const formatLesson = (lessonDetails)=>{
     return(
         <>
         <Card sx={{padding:'10px'}}>
-        <Typography>Lesson Details</Typography>
+        <Typography>Lesson Details</Typography> 
+        <Tooltip title="download lesson Image" placement="right">
+        <Button
+        class = "hoverColor"
+        onClick={handleLessonDownload} 
+        variant="outlined">
+            <DownloadIcon/>
+        </Button> 
+        </Tooltip>
         <ul>
             <li>
                 Grade Level: {gradeLevel}
@@ -343,6 +378,8 @@ const formatLesson = (lessonDetails)=>{
     }
 
 }
+
+
 
   return (
     <>
@@ -441,7 +478,9 @@ sx={{padding:'20px',width:'40%'}} multiline
         </header> 
 <center>
 <Card sx={{backgroundColor:"whitesmoke",width:'80%'}}>
+<div ref={screenshotArea}>
 {formatLesson(airesponse)}
+</div>
 <Button 
 sx={{margin:'20px'}}
 variant="contained" onClick={() => setFlip(!flip)}
