@@ -1,6 +1,11 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
-import { Button,TextField,Typography } from '@mui/material';
+import { Button,
+    TextField,
+    Typography,
+    Box,
+    Card
+     } from '@mui/material';
 
 
 const Compnanion = () => {
@@ -73,9 +78,26 @@ console.log("change")
 
   return (
     <>
-    <Typography sx={{fontSize:'140px'}}>{emoji}</Typography>
-    <TextField onChange={(e)=>setPhrase(e.target.value)}></TextField>
-    <Button onClick={handleSubmit}>CLICK</Button>
+    <Box sx={{display:'flex',justifyContent:'center'}}>
+        <Card sx={{width:'50%',textAlign:'center'}}>
+        <Typography sx={{fontSize:'140px'}}>{emoji}</Typography>
+        </Card>
+
+        <Card sx={{width:'50%',textAlign:'center',padding:'20px'}}>
+        <Box>
+        <TextField 
+        minRows={4}
+        multiline
+        sx={{width:'100%'}}
+        onChange={(e)=>setPhrase(e.target.value)}></TextField>
+        </Box>
+        <Button 
+        variant='contained'
+        onClick={handleSubmit}>SEND TO AI</Button>
+        </Card>
+    </Box>
+   
+   
     </>
   )
 }

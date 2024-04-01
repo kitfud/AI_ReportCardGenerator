@@ -81,7 +81,7 @@ const Navbar = () => {
           variant="h6" 
           component="div" 
           sx={{ marginLeft:'30px' }}>
-            Companion
+            ConstantCompanion
           </Typography>  
         </Link>
     </Toolbar>
