@@ -27,7 +27,10 @@ import {
     Radio,
     RadioGroup,
     FormControlLabel,
-    FormLabel
+    FormLabel,
+    Paper,
+    Container,
+    Grid
   
   } from "@mui/material"
 import { EnhancedEncryption } from '@mui/icons-material';
@@ -229,8 +232,11 @@ const formatLesson = (lessonDetails)=>{
 
     return(
         <>
-        <Card sx={{padding:'10px'}}>
-        <Typography>Lesson Details</Typography> 
+        <Paper 
+          elevation={24}
+         
+         sx={{padding:'10px',backgroundColor:'lightgrey'}}>
+        <Box sx={{marginBottom:'10px'}}>
         <Tooltip title="download lesson Image" placement="right">
         <Button
         class = "hoverColor"
@@ -239,78 +245,140 @@ const formatLesson = (lessonDetails)=>{
             <DownloadIcon/>
         </Button> 
         </Tooltip>
-        <ul>
+        </Box>
+
+      
+      <Box sx={{ 
+        display:"flex",
+        justifyContent:"center",
+        }}>
+            
+          <Card sx={{
+          display:'inline-block',
+          width:'50%',
+          margin:'10px',
+          padding:'10px',
+          textAlign:'left',
+          backgroundColor:'lightblue'
+        
+          }}>
+        
+          <ul>
+          <Typography sx={{fontWeight:'bold'}}><u>Lesson Details:</u></Typography> 
             <li>
-                Grade Level: {gradeLevel}
+                <Typography>Grade Level: {gradeLevel}</Typography>
             </li>
             <li>
-                Subject: {subject}
+                <Typography>Subject: {subject}</Typography>
             </li>
             <li>
-                Unit: {unit}
+              <Typography>  Unit: {unit}</Typography>
             </li>
             <li>
-                Context: {context}
+                <Typography>Context: {context}</Typography>
             </li>
             <li>
-                Lesson Timeframe:{timeframe} minutes
+                <Typography>Timeframe: {timeframe} minutes</Typography>
             </li>
         </ul>
-        <Typography>Learning Goals:</Typography>
-        {
-            learningGoals.map(item=>{
-                return(
-                    <div>{item}</div>
-                )
-            })
-        }
-        <Typography sx={{marginBottom:'20px'}}>Big Ideas:</Typography>
-        {
-            bigIdeas.map(item=>{
-                return(
-                   <div> {item}</div>
-                )
-            })
-        }
-    
-    <Typography sx={{marginBottom:'20px'}}>Assessements:</Typography>
+      
+
+          <Box>
+          <Typography sx={{fontWeight:'bold'}}><u>Assessements:</u></Typography>
         {
             assessments.map(item=>{
                 return(
-                    <div>{item}</div>
+                  <>
+                    <Typography>&#x2022;{item}</Typography>
+                    <br></br>
+                    </>
                 )
             })
         }
-<Typography sx={{marginTop:'20px'}}>Resources:</Typography>
+          </Box>
+          </Card>
+       
+         
+          <Card sx={{
+          margin:'10px', 
+          alignItems:'left',
+          padding:'20px',
+          textAlign:'left',
+          width:'50%',
+          backgroundColor:"lightsalmon"
+
+          }}>
+
+          <Box sx={{marginBottom:'20px'}}>
+          <Typography sx={{fontWeight:'bold'}}><u>Learning Goals:</u></Typography>
         {
-            resources.map(item=>{
+            learningGoals.map(item=>{
                 return(
-                    <div>{item}</div>
+                    <Typography>&#x2022;{item}</Typography>
+                )
+            })
+        }
+         </Box>
+             <Typography sx={{fontWeight:'bold'}}><u>Big Ideas:</u></Typography>
+        {
+            bigIdeas.map(item=>{
+                return(
+                   <Typography>&#x2022;{item}</Typography>
                 )
             })
         }
 
-<Typography sx={{marginTop:'20px'}}>Sequence:</Typography>
+<Typography sx={{marginTop:'20px',fontWeight:'bold'}}><u>Resources:</u></Typography>
+        {
+            resources.map(item=>{
+                return(
+                    <Typography>&#x2022;{item}</Typography>
+                )
+            })
+        }
+          </Card>
+    
+          
+      </Box>
+
+
+<Box>
+   
+<Card 
+variant='outlined'
+raised={true}
+sx={{display:'flex',
+padding:'20px',
+width:'95%',
+backgroundColor:"lightgoldenrodyellow"
+}}
+>
+  
+<Box sx={{textAlign:'left',margin:'auto'}}>
 
 {
     sections.map(item=>{
         return(
         <>
-        <div><b>{item.type} </b>/ pacing:{item.pacing} min</div>
+        
+        <Typography><b>{item.type} </b>/ <i>{item.pacing}</i> min</Typography>
          {item.activities.map(i=>( 
         <ul>
-            <li>{i}</li>
+            <li><Typography>{i}</Typography></li>
         </ul>
     ))
-    }
+    } 
         </>
 
         )
     })
     }
-
-
+    </Box>
     </Card>
+    </Box>
+
+
+    </Paper>
         </>
     )
     }
@@ -337,8 +405,9 @@ const formatLesson = (lessonDetails)=>{
     <ReactCardFlip isFlipped={flip}
             flipDirection="vertical">
   <header className="App-header">
-   <Card sx={{margin:'20px',width:'600px',borderRadius:'2%'}}>
-    <Typography>Lesson Planner</Typography>
+  <Typography sx={{fontSize:'50px',fontFamily: "Bebas Neue"}} variant='h1'>Lesson Planner</Typography>
+   <Card sx={{margin:'60px',width:'600px',borderRadius:'2%'}}>
+   
     <Box sx={{marginTop:'20px'}}>
         <TextField 
         onChange={(e)=>{setGrade(e.target.value)}}

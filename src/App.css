@@ -3,6 +3,7 @@
 
 .App {
   text-align: center;
+ 
 
 }
 
@@ -12,6 +13,7 @@
 
 ul {
   list-style-type: none;
+  padding:0;
 }
 
 Music{
@@ -21,14 +23,14 @@ Music{
 }
 
 .App-header {
-
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
 }
 
 #tsparticles{

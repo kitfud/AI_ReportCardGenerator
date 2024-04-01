@@ -232,14 +232,14 @@ const restart=()=>{
       />:null
    }
 
-    <div className="App">
+    <div className="App" >
       
       <Music/>
    
  
       <header className="App-header">
       <Typography sx={{fontSize:'50px',marginTop:'20px',fontFamily: "Bebas Neue"}} variant='h1'>Report Generator</Typography>
-        <Card sx={{margin:'20px',width:'300px',borderRadius:'2%'}}>
+        <Card sx={{margin:'40px',width:'300px',borderRadius:'2%'}}>
           <Box>
           <TextField  
         onChange = {(e)=>{handleName(e.target.value)}}
