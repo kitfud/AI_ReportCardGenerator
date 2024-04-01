@@ -12,6 +12,7 @@ import {
     Outlet
   } from "react-router-dom";
 import { dividerClasses } from '@mui/material';
+import Compnanion from './Compnanion';
 
   const router = createBrowserRouter([
     {
@@ -30,7 +31,11 @@ import { dividerClasses } from '@mui/material';
         {
             path:'/lessonplanner',
             element:<LessonPlanner/>
-        }
+        },
+        {
+          path:'/companion',
+          element:<Compnanion/>
+      },
       ]
     },
   ]);
