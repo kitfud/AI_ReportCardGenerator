@@ -74,6 +74,16 @@ const Navbar = () => {
             Lesson Planner
           </Typography>  
         </Link>
+
+
+        <Link style={{color:"white"}} to="/companion">
+          <Typography 
+          variant="h6" 
+          component="div" 
+          sx={{ marginLeft:'30px' }}>
+            ConstantCompanion
+          </Typography>  
+        </Link>
     </Toolbar>
        </Container>
     </AppBar>
