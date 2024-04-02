@@ -12,7 +12,7 @@ import {
     Outlet
   } from "react-router-dom";
 import { dividerClasses } from '@mui/material';
-import Compnanion from './Compnanion';
+import Companion from './Companion';
 
   const router = createBrowserRouter([
     {
@@ -34,7 +34,7 @@ import Compnanion from './Compnanion';
         },
         {
           path:'/companion',
-          element:<Compnanion/>
+          element:<Companion/>
       },
       ]
     },
