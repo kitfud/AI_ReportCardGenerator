@@ -1,14 +1,18 @@
 import React from 'react'
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useMemo } from 'react';
 import { Button,
     TextField,
     Typography,
     Box,
-    Card
+    Card,
+    CircularProgress
      } from '@mui/material';
 
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim"; 
+import particleOptions from './particleOptions.js';
 
-const Compnanion = () => {
+const Companion = () => {
     // node --version # Should be >= 18
 // npm install @google/generative-ai
 
@@ -71,6 +75,7 @@ const {
     const response = result.response;
   
     setAIResponse(response.text())
+    setProcessing(false)
   }
   
   
@@ -85,7 +90,7 @@ const {
         "😀": ["a", "i"]
       };
       
-      const defaultEmoji = "😐";
+      const defaultEmoji =  "🙂";
 
       const toEmoji = char => {
         if(char !==null){
@@ -107,6 +112,40 @@ const {
     const [message, setMessage] = useState("")
     const [emoji,setEmoji] =useState(defaultEmoji)
     const [airesponse,setAIResponse] = useState("")
+    const [init, setInit] = useState(false);
+    const [processing,setProcessing] = useState(false)
+   
+    
+    useEffect(() => {
+
+
+      initParticlesEngine(async (engine) => {
+        // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
+        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+        // starting from v2 you can add only the features you need reducing the bundle size
+        //await loadAll(engine);
+        //await loadFull(engine);
+        await loadSlim(engine);
+        //await loadBasic(engine);
+      }).then(() => {
+        setInit(true);
+      });
+    
+    }, []);
+
+    const particlesLoaded = (container) => {
+      
+      console.log(container);
+      
+    };
+
+    const options = useMemo(
+      () => (
+        
+     particleOptions
+      ),
+      [],
+    );
 
    useEffect(()=>{
     setSpeaking(true);
@@ -133,6 +172,7 @@ const {
       };
 
     const handleSubmit = (e) => {
+        setProcessing(true)
         setFirstQuestion(false)
         runChat();
       };
@@ -151,13 +191,22 @@ const {
 
   return (
     <>
+        {
+        
+        init?
+          <Particles
+            id="tsparticles"
+            particlesLoaded={particlesLoaded}
+            options={options}
+          />:null
+       }
     <Box sx={{display:'flex',justifyContent:'center'}}>
-        <Card sx={{width:'50%',textAlign:'center',padding:'20px'}}>
+        <Card sx={{width:'50%',textAlign:'center',padding:'20px',margin:'10px'}}>
         <Typography sx={{fontSize:'140px'}}>{emoji}</Typography>
         <Typography>{airesponse}</Typography>
         </Card>
 
-        <Card sx={{width:'50%',textAlign:'center',padding:'20px'}}>
+        <Card sx={{width:'50%',textAlign:'center',padding:'20px',margin:'10px'}}>
             {firstquestion?
             <Typography>"Hey, how's your day shaping up so far? Has anything exciting happened yet?</Typography>:null
             }
@@ -169,10 +218,12 @@ const {
         value = {message}
         onChange={(e)=>setMessage(e.target.value)}></TextField>
         </Box>
+        {!processing?
         <Button 
         sx={{marginTop:'20px'}}
         variant='contained'
-        onClick={handleSubmit}>SEND TO COMPANION</Button>
+        onClick={handleSubmit}>SEND TO COMPANION</Button>:<CircularProgress sx={{marginTop:'20px'}}/>
+        } 
         <Box sx={{marginTop:'80px'}}>
         {
             firstquestion?null:<Button onClick={restartConvo} color="error" variant='contained'>RESTART CONVERSATION</Button>
@@ -187,4 +238,4 @@ const {
   )
 }
 
-export default Compnanion
+export default Companion
