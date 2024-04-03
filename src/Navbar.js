@@ -8,6 +8,7 @@ import { Box,AppBar,Container,
     MenuItem
  } from '@mui/material'
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import ParticlesEffect from './ParticlesEffect';
 
 const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -28,6 +29,8 @@ const Navbar = () => {
         setAnchorElUser(null);
       };
   return (
+    <>
+   <ParticlesEffect/>
     <AppBar
     position='static'
     sx={{width:'100%',height:'70px',opacity:'80%'}}
@@ -87,7 +90,9 @@ const Navbar = () => {
     </Toolbar>
        </Container>
     </AppBar>
+    </>
   )
+  
 }
 
 export default Navbar
