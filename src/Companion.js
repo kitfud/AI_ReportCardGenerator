@@ -121,17 +121,12 @@ const {
    
     
 
-
-  
-
-
-
    useEffect(()=>{
     setSpeaking(true);
     handleSpeech(airesponse)
     intervalSet = setInterval(() => {
         handleAnimation();
-      }, 50);
+      }, 55);
    },[airesponse])
   
     const handleAnimation = () => {
@@ -187,20 +182,20 @@ const produceMessage=(event)=>{
        <Box sx={{textAlign:'center'}}>
        <Typography sx={{fontSize:'50px',
        fontFamily: "Bebas Neue",
-       marginTop:'20px',
+       margin:'20px',
        color:'white'}} variant='h1'>Constant Companion</Typography>
        </Box>
         
     <Box sx={{display:'flex',justifyContent:'center'}}>
     
-        <Card sx={{width:'50%',textAlign:'center',padding:'20px',margin:'10px'}}>
+        <Card sx={{width:'30%',textAlign:'center',padding:'20px',margin:'10px'}}>
         <Typography sx={{fontSize:'140px'}}>{emoji}</Typography>
         <Typography>{airesponse}</Typography>
         </Card>
 
-        <Card sx={{width:'50%',textAlign:'center',padding:'20px',margin:'10px'}}>
+        <Card sx={{width:'30%',textAlign:'center',padding:'20px',margin:'10px'}}>
             {firstquestion?
-            <Typography sx={{fontFamily: "Bebas Neue"}}>"Hey, how's your day shaping up so far? Has anything exciting happened yet?</Typography>:null
+            <Typography sx={{fontFamily: "Bebas Neue",fontSize:'20px'}}>"Hey, how's your day shaping up so far? Has anything exciting happened yet?</Typography>:null
             }
         <Box>
         <TextField 
