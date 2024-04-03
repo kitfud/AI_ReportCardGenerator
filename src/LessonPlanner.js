@@ -1,9 +1,6 @@
 import React from 'react'
-import { useState,useEffect,useMemo,useRef } from 'react';
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim"; 
+import { useState,useRef } from 'react';
 import ReactCardFlip from 'react-card-flip';
-import particleOptions from './particleOptions.js';
 import DownloadIcon from '@mui/icons-material/Download';
 import ExampleLessonJSON from './ExampleLesson.json'
 
@@ -15,11 +12,8 @@ import {
     Typography, 
     Card, 
     Button,
-    Snackbar,
-    IconButton,
     CircularProgress,
     Tooltip,
-    Slider,
     InputLabel,
     MenuItem,
     FormControl,
@@ -29,16 +23,12 @@ import {
     FormControlLabel,
     FormLabel,
     Paper,
-    Container,
-    Grid
+
   
   } from "@mui/material"
 import { EnhancedEncryption } from '@mui/icons-material';
 
 const LessonPlanner = () => {
-
-    // node --version # Should be >= 18
-// npm install @google/generative-ai
 
 const {
     GoogleGenerativeAI,
@@ -131,36 +121,7 @@ const downloadFile = (image, { name = "lesson-shot", extension = "jpg" } = {}) =
     const handleChange = (event) => {
         setEnvironment(event.target.value);
       };
-
-
-    const [init, setInit] = useState(false);
-    // this should be run only once per application lifetime
-    useEffect(() => {
-        initParticlesEngine(async (engine) => {
-          // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-          // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-          // starting from v2 you can add only the features you need reducing the bundle size
-          //await loadAll(engine);
-          //await loadFull(engine);
-          await loadSlim(engine);
-          //await loadBasic(engine);
-        }).then(() => {
-          setInit(true);
-        });
-      }, []);
-  
-      const particlesLoaded = (container) => {
-        console.log(container);
-      };
-  
-      const options = useMemo(
-        () => (
-       particleOptions
-        ),
-        [],
-      );
-
-      
+    
 
 const handleChangeRadio = (event) => {
 setValueRadio(event.target.value);
@@ -390,17 +351,6 @@ backgroundColor:"lightgoldenrodyellow"
   return (
     <>
      
-      {
-        
-    init?
-      <Particles
-        id="tsparticles"
-        particlesLoaded={particlesLoaded}
-        options={options}
-      />:null
-   }
-
-
     <div className="App">
     <ReactCardFlip isFlipped={flip}
             flipDirection="vertical">

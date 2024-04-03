@@ -45,7 +45,7 @@ module.exports = {
           outModes: {
             default: "bounce",
           },
-          random: false,
+          random: true,
           speed: 1,
           straight: false,
         },

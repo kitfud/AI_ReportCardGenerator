@@ -12,6 +12,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim"; 
 import particleOptions from './particleOptions.js';
 import Speech from './Speech.js'
+import ParticlesEffect from './ParticlesEffect.js';
 
 const Companion = () => {
     // node --version # Should be >= 18
@@ -113,42 +114,17 @@ const {
     const [message, setMessage] = useState("")
     const [emoji,setEmoji] =useState(defaultEmoji)
     const [airesponse,setAIResponse] = useState("")
-    const [init, setInit] = useState(false);
+    
     const [processing,setProcessing] = useState(false)
 
     const [dictation,setDictation] = useState("")
    
     
-    useEffect(() => {
 
 
-      initParticlesEngine(async (engine) => {
-        // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-        // starting from v2 you can add only the features you need reducing the bundle size
-        //await loadAll(engine);
-        //await loadFull(engine);
-        await loadSlim(engine);
-        //await loadBasic(engine);
-      }).then(() => {
-        setInit(true);
-      });
-    
-    }, []);
+  
 
-    const particlesLoaded = (container) => {
-      
-      console.log(container);
-      
-    };
 
-    const options = useMemo(
-      () => (
-        
-     particleOptions
-      ),
-      [],
-    );
 
    useEffect(()=>{
     setSpeaking(true);
@@ -200,17 +176,14 @@ setMessage(dictation)
       
     },[dictation])
 
+const produceMessage=(event)=>{
+  event.preventDefault()
+  setMessage(event.target.value)
+}
+
   return (
     <>
-        {
-        
-        init?
-          <Particles
-            id="tsparticles"
-            particlesLoaded={particlesLoaded}
-            options={options}
-          />:null
-       }
+
        <Box sx={{textAlign:'center'}}>
        <Typography sx={{fontSize:'50px',
        fontFamily: "Bebas Neue",
@@ -235,7 +208,7 @@ setMessage(dictation)
         multiline
         sx={{width:'100%'}}
         value = {message}
-        onChange={(e)=>setMessage(e.target.value)}></TextField>
+        onChange={(e)=>produceMessage(e)}></TextField>
         </Box>
         {!processing?
         <Button 
