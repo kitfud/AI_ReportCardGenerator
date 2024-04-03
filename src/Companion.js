@@ -11,6 +11,7 @@ import { Button,
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim"; 
 import particleOptions from './particleOptions.js';
+import Speech from './Speech.js'
 
 const Companion = () => {
     // node --version # Should be >= 18
@@ -114,6 +115,8 @@ const {
     const [airesponse,setAIResponse] = useState("")
     const [init, setInit] = useState(false);
     const [processing,setProcessing] = useState(false)
+
+    const [dictation,setDictation] = useState("")
    
     
     useEffect(() => {
@@ -189,6 +192,14 @@ const {
         setFirstQuestion(true)
     }
 
+    useEffect(()=>{
+      
+setMessage("")
+console.log("dictation",dictation)
+setMessage(dictation)
+      
+    },[dictation])
+
   return (
     <>
         {
@@ -200,7 +211,15 @@ const {
             options={options}
           />:null
        }
+       <Box sx={{textAlign:'center'}}>
+       <Typography sx={{fontSize:'50px',
+       fontFamily: "Bebas Neue",
+       marginTop:'20px',
+       color:'white'}} variant='h1'>Constant Companion</Typography>
+       </Box>
+        
     <Box sx={{display:'flex',justifyContent:'center'}}>
+    
         <Card sx={{width:'50%',textAlign:'center',padding:'20px',margin:'10px'}}>
         <Typography sx={{fontSize:'140px'}}>{emoji}</Typography>
         <Typography>{airesponse}</Typography>
@@ -208,7 +227,7 @@ const {
 
         <Card sx={{width:'50%',textAlign:'center',padding:'20px',margin:'10px'}}>
             {firstquestion?
-            <Typography>"Hey, how's your day shaping up so far? Has anything exciting happened yet?</Typography>:null
+            <Typography sx={{fontFamily: "Bebas Neue"}}>"Hey, how's your day shaping up so far? Has anything exciting happened yet?</Typography>:null
             }
         <Box>
         <TextField 
@@ -229,10 +248,11 @@ const {
             firstquestion?null:<Button onClick={restartConvo} color="error" variant='contained'>RESTART CONVERSATION</Button>
         }
         </Box>
-       
+        <Speech setDictation ={setDictation}/>
         </Card>
+       
     </Box>
-   
+
    
     </>
   )
