@@ -1,6 +1,6 @@
 import React from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography,Button } from '@mui/material';
 import { useEffect } from 'react';
 import MicIcon from '@mui/icons-material/Mic';
 import MicOffIcon from '@mui/icons-material/MicOff';
@@ -38,9 +38,15 @@ const Speech = ({setDictation}) => {
      <Box>
       <p><Typography>Microphone: </Typography>{listening ? <MicIcon sx={{color:'green'}}/> : <MicOffIcon sx={{color:'red'}}/>}</p>
       {!listening?
-      <button onClick={listen}><Typography>Start</Typography></button>:null
+      <Button
+      variant="contained" 
+      color="success"
+      onClick={listen}><Typography>Start</Typography></Button>:null
       }
-      <button onClick={reset}><Typography>Reset</Typography></button>
+      <Button
+      variant="contained"
+      color="error" 
+      onClick={reset}><Typography>Reset</Typography></Button>
     </Box>
     </>
   )

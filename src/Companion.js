@@ -188,7 +188,11 @@ const produceMessage=(event)=>{
         
     <Box sx={{display:'flex',justifyContent:'center'}}>
     
-        <Card sx={{width:'30%',textAlign:'center',padding:'20px',margin:'10px'}}>
+        <Card sx={{width:'30%',
+        textAlign:'center',
+        alignItems:'center',
+        padding:'20px',
+        margin:'10px'}}>
         <Typography sx={{fontSize:'140px'}}>{emoji}</Typography>
         <Typography>{airesponse}</Typography>
         </Card>
