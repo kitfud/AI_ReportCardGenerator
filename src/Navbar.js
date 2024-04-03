@@ -46,7 +46,7 @@ const Navbar = () => {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              fontFamily: "Bebas Neue",
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
@@ -61,7 +61,7 @@ const Navbar = () => {
           <Typography 
           variant="h6" 
           component="div" 
-          sx={{ flexGrow: 1, marginLeft:'50px' }}>
+          sx={{ flexGrow: 1, marginLeft:'50px',fontFamily: "Bebas Neue" }}>
             Report Generator
           </Typography>
           </Link>
@@ -70,7 +70,7 @@ const Navbar = () => {
           <Typography 
           variant="h6" 
           component="div" 
-          sx={{ marginLeft:'30px' }}>
+          sx={{ marginLeft:'30px',fontFamily: "Bebas Neue" }}>
             Lesson Planner
           </Typography>  
         </Link>
@@ -80,7 +80,7 @@ const Navbar = () => {
           <Typography 
           variant="h6" 
           component="div" 
-          sx={{ marginLeft:'30px' }}>
+          sx={{ marginLeft:'30px',fontFamily: "Bebas Neue" }}>
             ConstantCompanion
           </Typography>  
         </Link>
