@@ -1,6 +1,6 @@
 import React from 'react'
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState,useEffect } from 'react';
+import { Link,useLocation } from 'react-router-dom';
 import { Box,AppBar,Container, 
     Toolbar,
     Typography,
@@ -11,23 +11,45 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import ParticlesEffect from './ParticlesEffect';
 
 const Navbar = () => {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [landingActive,setLandingActive] = useState(false)
+    const [reportActive,setReportActive] = useState(false)
+    const [lessonActive,setLessonActive] = useState(false)
+    const [companionActive,setCompanionActive] = useState(false)
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-      };
-      const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-      };
-    
-      const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-      };
-    
-      const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-      };
+    const location = useLocation()
+
+useEffect(()=>{
+
+if(location.pathname == "/"){
+  setLandingActive(true)
+  setReportActive(false)
+  setCompanionActive(false)
+  setLessonActive(false)
+}
+else if (location.pathname == "/reportgenerator"){
+  setLandingActive(false)
+  setReportActive(true)
+  setCompanionActive(false)
+  setLessonActive(false)
+}
+else if (location.pathname == "/lessonplanner"){
+  setLandingActive(false)
+  setReportActive(false)
+  setCompanionActive(false)
+  setLessonActive(true)
+}
+else{
+  setLandingActive(false)
+  setReportActive(false)
+  setCompanionActive(true)
+  setLessonActive(false)
+}
+
+},[location])
+
+
+
+
   return (
     <>
    <ParticlesEffect/>
@@ -38,13 +60,13 @@ const Navbar = () => {
      
        <Container maxWidth="xl">
     <Toolbar disableGutters>
-    
-    <Link style={{color:"white"}} to="/">
+ 
+    <Link style={landingActive?{color:"#81D8D0"}:{color:"white"}} to="/">
     <VolunteerActivismIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
     <Typography
             variant="h6"
             noWrap
-            component="a"
+         
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
@@ -52,15 +74,15 @@ const Navbar = () => {
               fontFamily: "Bebas Neue",
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
               textDecoration: 'none',
             }}
           >
             EduCare
           </Typography>
-          </Link>
 
-          <Link style={{ color: 'white' }} to="/reportgenerator">
+
+          </Link>
+          <Link style={reportActive?{ color: "#81D8D0" }:{color:"white"}} to="/reportgenerator">
           <Typography 
           variant="h6" 
           component="div" 
@@ -69,7 +91,7 @@ const Navbar = () => {
           </Typography>
           </Link>
 
-        <Link style={{color:"white"}} to="/lessonplanner">
+        <Link style={lessonActive?{color:"#81D8D0"}:{color:"white"}} to="/lessonplanner">
           <Typography 
           variant="h6" 
           component="div" 
@@ -79,7 +101,7 @@ const Navbar = () => {
         </Link>
 
 
-        <Link style={{color:"white"}} to="/companion">
+        <Link style={companionActive?{color:"#81D8D0"}:{color:"white"}} to="/companion">
           <Typography 
           variant="h6" 
           component="div" 

@@ -77,7 +77,7 @@ const LandingPage = () => {
       <VolunteerActivismIcon  sx={{fontSize:'50px',color:"#81D8D0"}}/>
         <Typography 
         color="#81D8D0"
-        variant="h1" sx={{ fontWeight: 'bold' }}>EduCare</Typography>
+        variant="h1" sx={{ fontWeight: 'bold',textShadow: "2px 2px gray" }}>EduCare</Typography>
       </Box>
       <Box sx={{ 
         margin:'auto',
@@ -114,19 +114,20 @@ const LandingPage = () => {
         <SchoolIcon color="primary" sx={{
             fontSize:'250px'}}/>
         </Box>
-      
       </Box>
-      <Box ref={servicesRef} sx={{ padding: '2rem',
+
+      <Box ref={servicesRef} sx={{ 
+      padding: '2rem',
       margin:'auto',
       width:'90%',
-      height:'35vh' }}>
+      height:'42vh' }}>
         <Typography 
         color="primary"
         variant="h2" 
-        sx={{textAlign:'center',fontWeight:'bold',color:"#81D8D0"}} >Services</Typography>
+        sx={{textAlign:'center',fontWeight:'bold',color:"#81D8D0",textShadow: "2px 2px gray"}} >Services</Typography>
         <Typography 
         color="primary"
-        sx={{textAlign:'center',fontWeight:'bold',color:"#81D8D0"}}>
+        sx={{textAlign:'center',fontWeight:'bold',color:"#81D8D0",textShadow: "2px 2px gray"}}>
           Test our innovative products:
         </Typography>
 <Box sx={{display:'flex',marginTop:'40px',marginBottom:'20px'}}>
@@ -136,28 +137,31 @@ const LandingPage = () => {
 <Typography className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Report Generator </u></Typography>
 </Link>
 <Box>
-  <Typography sx={{color:'darkgray'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
+  <Typography sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
 </Box>
 </Card>
-<Card sx={{width:'33%',backgroundColor:'transparent',textAlign:'center'}}>
+<Card sx={{width:'33%',
+backgroundColor:'transparent',textAlign:'center'}}>
 <Link  style={{ color: 'white' }} to="/lessonplanner">
 <WorkHistoryRoundedIcon className="linkHover" sx={{color:'darkgray',fontSize:'100px'}}/>
 <Typography className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Lesson Planner </u></Typography>
 </Link>
-<Typography sx={{color:'darkgray'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
+<Typography sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
 </Card>
-<Card sx={{width:'33%',backgroundColor:'transparent',textAlign:'center'}}>
+<Card sx={{width:'33%',
+backgroundColor:'transparent',textAlign:'center'}}>
 <Link  style={{ color: 'white' }} to="/companion">
 <TagFacesRoundedIcon className="linkHover" sx={{color:'darkgray',fontSize:'100px'}}/>
 <Typography className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Constant Companion</u></Typography>
 </Link>
-<Typography sx={{color:'darkgray'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
+<Typography sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
 </Card>
         </Box>
       </Box>
 
-      
-      <Box ref={contactRef} sx={{ padding: '2rem', 
+
+      <Box ref={contactRef} sx={{ 
+      padding: '2rem', 
       display:'flex',
       backgroundColor: '#e0e0e0',
       margin:'auto',
@@ -188,9 +192,9 @@ const LandingPage = () => {
          <CopyrightIcon sx={{fontSize:'20px'}} color="primary"/>
           <Typography variant='h6' color="primary">2024 Kit Fuderich</Typography>
          </Box>
-         
-    
       </Box>
+     
+
       <Box sx={{textAlign:'center',left:'90%',margin:'20px'}}>
       <Button 
       variant="contained" 
