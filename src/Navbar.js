@@ -1,6 +1,6 @@
 import React from 'react'
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState,useEffect } from 'react';
+import { Link,useLocation } from 'react-router-dom';
 import { Box,AppBar,Container, 
     Toolbar,
     Typography,
@@ -14,20 +14,15 @@ const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-      };
-      const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-      };
-    
-      const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-      };
-    
-      const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-      };
+    const location = useLocation()
+
+useEffect(()=>{
+console.log("Location",location.pathname)
+},[location])
+
+
+
+
   return (
     <>
    <ParticlesEffect/>
@@ -44,7 +39,7 @@ const Navbar = () => {
     <Typography
             variant="h6"
             noWrap
-            component="a"
+         
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,

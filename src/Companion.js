@@ -182,7 +182,6 @@ const {
     useEffect(()=>{
       
 setMessage("")
-console.log("dictation",dictation)
 setMessage(dictation)
       
     },[dictation])

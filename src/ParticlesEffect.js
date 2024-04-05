@@ -10,7 +10,6 @@ const ParticlesEffect = () => {
 
     useEffect(() => {
       if(!started){
-        console.log("in")
         setStarted(true)
         initParticlesEngine(async (engine) => {
           await loadSlim(engine);

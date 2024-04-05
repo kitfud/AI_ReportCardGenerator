@@ -36,16 +36,16 @@ const Speech = ({setDictation}) => {
   return (
     <>
      <Box>
-      <p><Typography>Microphone: </Typography>{listening ? <MicIcon sx={{color:'green'}}/> : <MicOffIcon sx={{color:'red'}}/>}</p>
+      <Typography><Typography>Microphone: </Typography>{listening ? <MicIcon sx={{color:'green'}}/> : <MicOffIcon sx={{color:'red'}}/>}</Typography>
       {!listening?
-      <Button
-      variant="contained" 
-      color="success"
+      <Button variant='contained' 
+      color="primary"
+      sx={{margin:'2px'}}
       onClick={listen}><Typography>Start</Typography></Button>:null
       }
-      <Button
-      variant="contained"
-      color="error" 
+      <Button variant='contained' 
+      color="error"
+      sx={{margin:'2px'}}
       onClick={reset}><Typography>Reset</Typography></Button>
     </Box>
     </>

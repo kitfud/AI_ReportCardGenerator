@@ -7,13 +7,15 @@ import ErrorPage from './ErrorPage';
 import LandingPage from './LandingPage';
 import LessonPlanner from './LessonPlanner';
 
+
 import {
     createBrowserRouter,
     RouterProvider,
     Outlet
   } from "react-router-dom";
-import { dividerClasses } from '@mui/material';
+import { dividerClasses,Box } from '@mui/material';
 import Companion from './Companion';
+
 
   const router = createBrowserRouter([
     {
@@ -46,14 +48,17 @@ import Companion from './Companion';
 
 function NavbarWrapper(){
     return(
-        <div>
-            <Navbar/>
+        <Box>
+            <Navbar />
             <Outlet/>
-        </div>
+        </Box>
     )
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+
 root.render(
     <>
    
