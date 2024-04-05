@@ -231,7 +231,9 @@ const stopReading =()=>{
         <Typography>{airesponse}
           </Typography>
           {audioStop==false?
-          <Button onClick={stopReading} variant="contained" color="warning"><VolumeOffIcon/></Button>:
+          <Button 
+          sx={{marginTop:'20px'}}
+          onClick={stopReading} variant="contained" color="warning"><VolumeOffIcon/></Button>:
           null
 }
           </>:null
@@ -246,15 +248,16 @@ const stopReading =()=>{
         <TextField 
         minRows={4}
       
-        helperText="Type or record a response with the microphone"
+        label="Type in or record a response with the microphone"
         multiline
-        sx={{width:'100%'}}
+        sx={{width:'100%',marginTop:'20px'}}
         value = {message}
         onChange={(e)=>produceMessage(e)}></TextField>
         </Box>
         {!processing?
         message?
         <Button 
+        color="success"
         sx={{marginTop:'20px'}}
         variant='contained'
         onClick={handleSubmit}>SEND TO COMPANION</Button>:null:<CircularProgress sx={{marginTop:'20px'}}/>

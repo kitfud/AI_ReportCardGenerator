@@ -77,7 +77,7 @@ const LandingPage = () => {
       <VolunteerActivismIcon  sx={{fontSize:'50px',color:"#81D8D0"}}/>
         <Typography 
         color="#81D8D0"
-        variant="h1" sx={{ fontWeight: 'bold' }}>EduCare</Typography>
+        variant="h1" sx={{ fontWeight: 'bold',textShadow: "2px 2px gray" }}>EduCare</Typography>
       </Box>
       <Box sx={{ 
         margin:'auto',
@@ -124,10 +124,10 @@ const LandingPage = () => {
         <Typography 
         color="primary"
         variant="h2" 
-        sx={{textAlign:'center',fontWeight:'bold',color:"#81D8D0"}} >Services</Typography>
+        sx={{textAlign:'center',fontWeight:'bold',color:"#81D8D0",textShadow: "2px 2px gray"}} >Services</Typography>
         <Typography 
         color="primary"
-        sx={{textAlign:'center',fontWeight:'bold',color:"#81D8D0"}}>
+        sx={{textAlign:'center',fontWeight:'bold',color:"#81D8D0",textShadow: "2px 2px gray"}}>
           Test our innovative products:
         </Typography>
 <Box sx={{display:'flex',marginTop:'40px',marginBottom:'20px'}}>
