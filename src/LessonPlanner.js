@@ -69,6 +69,7 @@ const {
       },
     ];
   
+    try{
     const result = await model.generateContent([input]);
    
     const response = result.response;
@@ -77,6 +78,10 @@ const {
     setAIResponse(responseText)
     setProcessing(false)
     setFlip(true)
+    }
+    catch(error){
+      alert("a processing error has occured: "+ error)
+    }
    
   }
   

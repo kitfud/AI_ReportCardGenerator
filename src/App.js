@@ -134,7 +134,7 @@ async function runChat() {
 
 
   let message = createMessage()
-  
+  try{
   const result = await chat.sendMessage(message);
   const response = result.response;
 
@@ -158,6 +158,10 @@ async function runChat() {
     }
   }
   setData(newString)
+}
+catch(error){
+alert("a processing error has occured: "+ error)
+}
 }
 
 const addAssignment = ()=>{
@@ -187,7 +191,13 @@ const deleteAssignments = ()=>{
 }
 
 const restart=()=>{
-  window.location.reload()
+  //window.location.reload()
+  deleteAssignments()
+  setData(null)
+  handleName("")
+  handleGrade("")
+  stopSpeech()
+  setCommentLength(3)
 }
 
 const [proofreadToggled,setProofread] = useState(false)
@@ -241,6 +251,7 @@ const stopSpeech = ()=>{
         <Card sx={{margin:'40px',width:'300px',borderRadius:'2%'}}>
           <Box>
           <TextField  
+        value={name}
         onChange = {(e)=>{handleName(e.target.value)}}
         sx={{marginTop:'20px'}}
         variant='outlined'
@@ -250,6 +261,7 @@ const stopSpeech = ()=>{
 <Box>
 <TextField  
         sx={{margin:'10px'}}
+        value={grade}
         onChange = {(e)=>{handleGrade(e.target.value)}}
         variant='outlined'
         label="Overall Grade"></TextField>

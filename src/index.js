@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 import ErrorPage from './ErrorPage';
 import LandingPage from './LandingPage';
 import LessonPlanner from './LessonPlanner';
-import ParticlesEffect from './ParticlesEffect';
+
 import {
     createBrowserRouter,
     RouterProvider,
@@ -27,15 +27,18 @@ import Companion from './Companion';
         },
         {
             path:'/reportgenerator',
-            element:<App/>
+            element:<App/>,
+          
         },
         {
             path:'/lessonplanner',
-            element:<LessonPlanner/>
+            element:<LessonPlanner/>,
+     
         },
         {
           path:'/companion',
-          element:<Companion/>
+          element:<Companion/>,
+          
       },
       ]
     },

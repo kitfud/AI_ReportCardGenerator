@@ -72,11 +72,17 @@ const {
     });
   
     let IncomingMessage = message
+    try{
     const result = await chat.sendMessage(IncomingMessage);
     const response = result.response;
   
     setAIResponse(response.text())
     setProcessing(false)
+    }
+    catch(error){
+      setProcessing(false)
+      alert("a processing error has occured: " + error)
+    }
   }
   
   
@@ -248,10 +254,11 @@ const stopReading =()=>{
         onChange={(e)=>produceMessage(e)}></TextField>
         </Box>
         {!processing?
+        message?
         <Button 
         sx={{marginTop:'20px'}}
         variant='contained'
-        onClick={handleSubmit}>SEND TO COMPANION</Button>:<CircularProgress sx={{marginTop:'20px'}}/>
+        onClick={handleSubmit}>SEND TO COMPANION</Button>:null:<CircularProgress sx={{marginTop:'20px'}}/>
         } 
         <Box sx={{marginTop:'80px'}}>
         {
