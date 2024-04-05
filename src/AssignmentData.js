@@ -13,9 +13,7 @@ const AssignmentData = ({
     deleteAssignments
 }) => {
 
-    useEffect(()=>{
-        console.log("update detected on component",assignmentData)
-    },[assignmentData])
+
   return (
   <>
     {

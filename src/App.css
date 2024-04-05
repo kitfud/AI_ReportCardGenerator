@@ -50,3 +50,8 @@ position:relative;
   color:yellow;
 }
 
+.titleHover:hover{
+  color:#81D8D0;
+  font-weight: bold;
+}
+

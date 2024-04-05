@@ -8,11 +8,10 @@ import { Button,
     CircularProgress
      } from '@mui/material';
 
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim"; 
-import particleOptions from './particleOptions.js';
 import Speech from './Speech.js'
-import ParticlesEffect from './ParticlesEffect.js';
+
+import VolumeOffIcon from '@mui/icons-material/VolumeOff';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 
 const Companion = () => {
     // node --version # Should be >= 18
@@ -83,6 +82,7 @@ const {
   
 
     let currentIndex = 0
+    let speak = false
     const emojiMap = {
         "😮": ["o", "e"],
         "😐": ["b", "p", "m"],
@@ -95,7 +95,8 @@ const {
       const defaultEmoji =  "🙂";
 
       const toEmoji = char => {
-        if(char !==null){
+ 
+        if(char !==null  ){
         return (
           Object.keys(emojiMap).find(emoji =>
             emojiMap[emoji].includes(char.toLowerCase())
@@ -105,6 +106,8 @@ const {
           else{
             return defaultEmoji
           }
+        
+      
       };
 
     let intervalSet
@@ -122,26 +125,33 @@ const {
     
 
    useEffect(()=>{
-    setSpeaking(true);
+    setStopAudio(false)
+    if(airesponse){
+    speak = true
     handleSpeech(airesponse)
-    intervalSet = setInterval(() => {
-        handleAnimation();
-      }, 55);
+    }
+    
+    intervalSet = setInterval(handleAnimation, 55);    
    },[airesponse])
+
+ 
   
     const handleAnimation = () => {
-        if (currentIndex< airesponse.length - 1) {
+      
+        if (currentIndex< airesponse.length - 1 ) {
+      
         currentIndex = currentIndex + 1
-        
         setEmoji(toEmoji(airesponse[currentIndex]))
+        
         }
         else{
         clearInterval(intervalSet);
-        setMessage("")
+        setStopAudio(true)
         setSpeaking(false)
         setEmoji(defaultEmoji)
         currentIndex=0
         }
+      
       
       };
 
@@ -176,6 +186,22 @@ const produceMessage=(event)=>{
   setMessage(event.target.value)
 }
 
+
+useEffect(()=>{
+return ()=>stopReading()
+},[])
+
+
+const [audioStop,setStopAudio] = useState(false)
+
+const stopReading =()=>{
+  setStopAudio(true)
+  setSpeaking(false)
+  setEmoji(defaultEmoji)
+  clearInterval(intervalSet);
+  speechSynthesis.cancel()
+  }
+
   return (
     <>
 
@@ -183,7 +209,7 @@ const produceMessage=(event)=>{
        <Typography sx={{fontSize:'50px',
        fontFamily: "Bebas Neue",
        margin:'20px',
-       color:'white'}} variant='h1'>Constant Companion</Typography>
+      color:"#81D8D0"}} variant='h1'>Constant Companion</Typography>
        </Box>
         
     <Box sx={{display:'flex',justifyContent:'center'}}>
@@ -193,8 +219,18 @@ const produceMessage=(event)=>{
         alignItems:'center',
         padding:'20px',
         margin:'10px'}}>
-        <Typography sx={{fontSize:'140px'}}>{emoji}</Typography>
-        <Typography>{airesponse}</Typography>
+        <Typography sx={{fontSize:'140px'}}>{!audioStop?emoji:defaultEmoji}</Typography>
+        {
+          airesponse !=""?
+          <>
+        <Typography>{airesponse}
+          </Typography>
+          {audioStop==false?
+          <Button onClick={stopReading} variant="contained" color="warning"><VolumeOffIcon/></Button>:
+          null
+}
+          </>:null
+        }
         </Card>
 
         <Card sx={{width:'30%',textAlign:'center',padding:'20px',margin:'10px'}}>
@@ -204,6 +240,8 @@ const produceMessage=(event)=>{
         <Box>
         <TextField 
         minRows={4}
+      
+        helperText="Type or record a response with the microphone"
         multiline
         sx={{width:'100%'}}
         value = {message}
