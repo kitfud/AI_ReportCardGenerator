@@ -3,6 +3,7 @@ import './App.css';
 import React,{useState,useEffect,useMemo} from 'react'
 import AssignmentData from './AssignmentData';
 import {
+  Link,
   Box, 
   TextField, 
   Typography, 
@@ -17,12 +18,12 @@ import {
 } from "@mui/material"
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ShareIcon from "@mui/icons-material/Share";
-import Speech from 'react-speech';
-import style from './style.js'
+
 
 import Music from './Music.js';
 
-
+import StopCircleIcon from '@mui/icons-material/StopCircle';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
 function App() {
 
@@ -33,7 +34,7 @@ const [name,handleName] = useState("")
 const [grade,handleGrade] = useState("")
 
 const [generating, setGenerating] = useState(false)
-const [length,setCommentLength] = useState(6)
+const [length,setCommentLength] = useState(3)
 
 useEffect(()=>{
 setGenerating(false)
@@ -189,6 +190,41 @@ const restart=()=>{
   window.location.reload()
 }
 
+const [proofreadToggled,setProofread] = useState(false)
+const handleProofread=(elementProps)=>{
+
+console.log("Props",elementProps)
+
+if(proofreadToggled==true){
+  setProofread(false)
+}
+else{
+  setProofread(true)
+}
+}
+
+const [speaking,setSpeaking] = useState(false)
+
+const handleSpeech = ()=>{
+  setSpeaking(true)
+  let speech = new SpeechSynthesisUtterance(data);
+  speech.lang = "en-GB";
+ speechSynthesis.speak(speech);
+
+  speech.addEventListener("end", (event) => {
+  setSpeaking(false)
+  });
+}
+
+useEffect(()=>{
+return ()=> stopSpeech()
+},[])
+
+const stopSpeech = ()=>{
+  setSpeaking(false)
+  speechSynthesis.cancel()
+}
+
 
   return (
 <>
@@ -197,11 +233,11 @@ const restart=()=>{
 
     <div className="App" >
       
-      <Music/>
+      <Music speaking={speaking}/>
    
  
       <header className="App-header">
-      <Typography sx={{fontSize:'50px',marginTop:'20px',fontFamily: "Bebas Neue"}} variant='h1'>Report Generator</Typography>
+      <Typography sx={{fontSize:'50px',marginTop:'20px',fontFamily: "Bebas Neue",color:"#81D8D0"}} variant='h1'>Report Generator</Typography>
         <Card sx={{margin:'40px',width:'300px',borderRadius:'2%'}}>
           <Box>
           <TextField  
@@ -242,8 +278,7 @@ deleteAssignments={deleteAssignments}
 
 
         </Card>
-{/* 
-        <Button onClick={createMessage} variant='contained'>Preview Data</Button> */}
+
 
 {
   !generating?
@@ -255,7 +290,6 @@ deleteAssignments={deleteAssignments}
   <Slider
   onChange = {(e)=> setCommentLength(e.target.value)}
   aria-label="Comment Length"
-  defaultValue={length}
   valueLabelDisplay="auto"
   shiftStep={3}
   step={1}
@@ -279,10 +313,31 @@ deleteAssignments={deleteAssignments}
         <Tooltip title="proofread comment" placement="left">
         <Box sx={{marginTop:'20px'}}>
         
-        <Speech
-      styles={style}
-      stop={true} 
-      text={data}/>
+        <Box>
+          {
+          !speaking?
+          <Button 
+          onClick={handleSpeech}
+          sx={{margin:'5px'}}
+          variant="contained"
+          color="primary"
+          >
+            <PlayCircleIcon/>
+          </Button>:
+          <Button
+          onClick={stopSpeech}
+          sx={{margin:'5px'}}
+           color="error"
+           variant="contained">
+            <StopCircleIcon/>
+           </Button>
+          }
+        </Box>
+     
+     
+       
+        
+     
         
       </Box>
         </Tooltip>

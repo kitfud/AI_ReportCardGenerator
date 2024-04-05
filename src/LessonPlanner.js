@@ -355,7 +355,7 @@ backgroundColor:"lightgoldenrodyellow"
     <ReactCardFlip isFlipped={flip}
             flipDirection="vertical">
   <header className="App-header">
-  <Typography sx={{fontSize:'50px',fontFamily: "Bebas Neue"}} variant='h1'>Lesson Planner</Typography>
+  <Typography sx={{fontSize:'50px',fontFamily: "Bebas Neue",color:"#81D8D0"}} variant='h1'>Lesson Planner</Typography>
    <Card sx={{margin:'60px',width:'600px',borderRadius:'2%'}}>
    
     <Box sx={{marginTop:'20px'}}>
