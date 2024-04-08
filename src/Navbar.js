@@ -10,6 +10,10 @@ import { Box,AppBar,Container,
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import ParticlesEffect from './ParticlesEffect';
 
+import NoteAltTwoToneIcon from '@mui/icons-material/NoteAltTwoTone';
+import WorkHistoryRoundedIcon from '@mui/icons-material/WorkHistoryRounded';
+import TagFacesRoundedIcon from '@mui/icons-material/TagFacesRounded';
+
 const Navbar = () => {
     const [landingActive,setLandingActive] = useState(false)
     const [reportActive,setReportActive] = useState(false)
@@ -54,15 +58,15 @@ else{
     <>
    <ParticlesEffect/>
     <AppBar
-    position='static'
+    position='fixed'
     sx={{width:'100%',height:'70px',opacity:'80%'}}
     >
      
-       <Container maxWidth="xl">
-    <Toolbar disableGutters>
+    <Container maxWidth="xl" >
+    <Toolbar  disableGutters>
  
     <Link style={landingActive?{color:"#81D8D0"}:{color:"white"}} to="/">
-    <VolunteerActivismIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
+    <VolunteerActivismIcon sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1 }}/>
     <Typography
             variant="h6"
             noWrap
@@ -86,7 +90,8 @@ else{
           <Typography 
           variant="h6" 
           component="div" 
-          sx={{ flexGrow: 1, marginLeft:'50px',fontFamily: "Bebas Neue" }}>
+          sx={{ 
+             marginLeft:'50px',fontFamily: "Bebas Neue" }}>
             Report Generator
           </Typography>
           </Link>
