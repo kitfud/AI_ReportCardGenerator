@@ -55,3 +55,15 @@ position:relative;
   font-weight: bold;
 }
 
+.highlightScroll:hover{
+  border: 3px solid blue;
+  border-radius: 0pt;
+  padding:0px;
+  margin:0;
+  
+}
+
+.highlightScroll{
+  padding:2px;
+  margin:1px;
+}

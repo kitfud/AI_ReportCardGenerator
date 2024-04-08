@@ -5,13 +5,20 @@ import { Button,
     Typography,
     Box,
     Card,
-    CircularProgress
+    Grid,
+    CircularProgress,
+    Tooltip
      } from '@mui/material';
 
 import Speech from './Speech.js'
 
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+
+import library from './images/Library.webp'
+import cafe from './images/cafe.jpeg'
+import office from './images/office.webp'
+import garden from './images/garden.jpeg'
 
 const Companion = () => {
     // node --version # Should be >= 18
@@ -116,6 +123,8 @@ const {
       
       };
 
+    
+
     let intervalSet
     const [speaking,setSpeaking] = useState(false)
     const [firstquestion,setFirstQuestion] = useState(true)
@@ -127,8 +136,20 @@ const {
     const [processing,setProcessing] = useState(false)
 
     const [dictation,setDictation] = useState("")
+
+    const [background, setBackground] = useState(library)
    
     
+  const selectRandomBackdrop = ()=>{
+    let backdrops = [cafe,library,office,garden]
+    let randomElement = backdrops[Math.floor(Math.random()*backdrops.length)]
+    return randomElement
+  }
+
+  useEffect(()=>{
+let loadBackdrop = selectRandomBackdrop()
+setBackground(loadBackdrop)
+  },[])
 
    useEffect(()=>{
     setStopAudio(false)
@@ -207,6 +228,8 @@ const stopReading =()=>{
   speechSynthesis.cancel()
   }
 
+
+
   return (
     <>
 
@@ -219,12 +242,37 @@ const stopReading =()=>{
         
     <Box sx={{display:'flex',justifyContent:'center'}}>
     
-        <Card sx={{width:'30%',
+        <Card sx={{
+        width:'30%',
         textAlign:'center',
         alignItems:'center',
         padding:'20px',
         margin:'10px'}}>
-        <Typography sx={{fontSize:'140px'}}>{!audioStop?emoji:defaultEmoji}</Typography>
+
+         
+       <Grid container direction="row" columnGap={{ xs: 1}} sx={{margin:'10px',padding:'2px',position:'relative'}} >   
+          <Tooltip title="change backdrop to garden" placement="top">
+          <Box className="highlightScroll" onClick={()=>setBackground(garden)}
+          item sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${garden})`}} ></Box>
+          </Tooltip>
+         <Tooltip title="change backdrop to office" placement="top">
+          <Box className="highlightScroll" onClick={()=>setBackground(office)}
+          item sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${office})`}} ></Box>
+          </Tooltip>
+          <Tooltip title="change backdrop to cafe" placement="top">
+          <Box className="highlightScroll" onClick={()=>setBackground(cafe)}
+          item sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${cafe})`}} ></Box>  
+          </Tooltip>
+          <Tooltip title="change backdrop to library" placement="top">
+          <Box className="highlightScroll"  onClick={()=>setBackground(library)}
+          item sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${library})`}} ></Box>   
+             </Tooltip>
+       </Grid>
+   
+          <Box sx={{ backgroundSize: "cover",backgroundImage:`url(${background})`,height:'300px',marginBottom:'10px',padding:'2px'}}>
+          <Typography sx={{fontSize:'140px',position:'relative',top:'20%'}}>{!audioStop?emoji:defaultEmoji}</Typography>
+          </Box>
+       
         {
           airesponse !=""?
           <>
