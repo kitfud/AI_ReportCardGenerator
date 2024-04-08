@@ -13,7 +13,7 @@ import {
     RouterProvider,
     Outlet
   } from "react-router-dom";
-import { dividerClasses,Box } from '@mui/material';
+import { dividerClasses,Box,createTheme,ThemeProvider } from '@mui/material';
 import Companion from './Companion';
 
 
@@ -46,12 +46,38 @@ import Companion from './Companion';
     },
   ]);
 
+const theme = createTheme()
+
+theme.typography.h1 = {
+  fontSize: '80px',
+  '@media (min-width:600px)': {
+    fontSize: '100px',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '150px',
+  },
+};
+
+theme.typography.h6 = {
+  fontSize: '11px',
+  '@media (min-width:600px)': {
+    fontSize: '20px',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '30px',
+  },
+};
+
+
+
 function NavbarWrapper(){
     return(
+      <ThemeProvider theme = {theme}>
         <Box>
             <Navbar />
             <Outlet/>
         </Box>
+        </ThemeProvider>
     )
 }
 

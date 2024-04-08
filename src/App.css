@@ -1,6 +1,5 @@
 
 
-
 .App {
   text-align: center;
  
@@ -48,6 +47,11 @@ position:relative;
 
 .linkHover:hover{
   color:yellow;
+}
+
+.buttonHover:hover{
+  color:yellow;
+  background-color: #81D8D0 !important;
 }
 
 .titleHover:hover{

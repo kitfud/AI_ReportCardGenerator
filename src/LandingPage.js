@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useState } from 'react';
 import { Button, Typography,
+
    Box,
    Card,
   Modal,
@@ -71,56 +72,67 @@ const LandingPage = () => {
           </Typography>
         </Box>
       </Modal>
+
       <Box ref={topRef} sx={{textAlign:'center', 
       justifyContent: 'center', 
-      alignItems: 'center', height: '20vh',marginTop:'20px' }}>
+      alignItems: 'center', height: '20vh',marginTop:'90px' }}>
       <VolunteerActivismIcon  sx={{fontSize:'50px',color:"#81D8D0"}}/>
         <Typography 
         color="#81D8D0"
         variant="h1" sx={{ fontWeight: 'bold',textShadow: "2px 2px gray" }}>EduCare</Typography>
       </Box>
+
       <Box sx={{ 
         margin:'auto',
         width:'90%',
         padding: '2rem' }}>
-        <Button sx={{margin:'2px'}} variant="contained" onClick={() => scrollToSection(aboutRef)}>About Us</Button>
-        <Button sx={{margin:'2px'}} variant="contained" onClick={() => scrollToSection(servicesRef)}>Services</Button>
-        <Button sx={{margin:'2px'}} variant="contained" onClick={() => scrollToSection(contactRef)}>Contact</Button>
+        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(aboutRef)}><Typography>About</Typography></Button>
+        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(servicesRef)}><Typography>Services</Typography></Button>
+        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(contactRef)}><Typography>Contact</Typography></Button>
       </Box>
+
       <Box ref={aboutRef} sx={{
-      display:'flex',
+      display:{ xs: "relative", md: "flex", lg: "flex" },
       textAlign:'center',
       margin:'auto',
       padding: '2rem', 
-      width:'90%',
+      width:'100%',
       backgroundColor: '#e0e0e0',
       opacity:'60%',
-      height:'40vh'}}>
-        <Box sx={{width:'40%',margin:'auto'}}>
-          <Tooltip title="learn about the product by video" placement='top'>
+      height:{xs:'30vh',md:'31vh',lg:'40vh'}}}>
+        
+        <Box sx={{width:'100%',margin:'auto'}}>
+        <Tooltip title="learn about the product by video" placement='top'>
         <Typography 
         color="primary"
         variant="h4"
         onClick={handleOpen}
         className='titleHover'
-        ><u>About Us</u></Typography>
+        ><u>About Us</u>
+        </Typography>
+
         </Tooltip>
-        <Typography color="primary" variant='h6'>
+        <Typography color="primary" variant='h6' sx={{marginLeft:'10px'}}>
           A one stop shop for your teaching needs! Our product seeks to address some of the time crunches which happen throughout the school year with our AI enhanced productivity features. 
         </Typography> 
         </Box>
      
-        <Box sx={{width:'40%',margin:'auto'}}>
-        <SchoolIcon color="primary" sx={{
-            fontSize:'250px'}}/>
+        <Box sx={{display:'block',width:'100%',margin:'auto'}}>
+          <Typography>
+          <SchoolIcon color='primary' sx={{ marginRight:'50px',
+          fontSize: { xs: "150px", md: "200px", lg: "300px" }, }}/>
+          </Typography>
+       
         </Box>
-      </Box>
+        </Box>
 
       <Box ref={servicesRef} sx={{ 
+      display:'relative',
       padding: '2rem',
       margin:'auto',
+      marginBottom:'10px',
       width:'90%',
-      height:'42vh' }}>
+      height:'45vh' }}>
         <Typography 
         color="primary"
         variant="h2" 
@@ -130,51 +142,62 @@ const LandingPage = () => {
         sx={{textAlign:'center',fontWeight:'bold',color:"#81D8D0",textShadow: "2px 2px gray"}}>
           Test our innovative products:
         </Typography>
-<Box sx={{display:'flex',marginTop:'40px',marginBottom:'20px'}}>
-<Card sx={{width:'33%',backgroundColor:'transparent',textAlign:'center'}}>
-<Link  style={{ color: 'white' }} to="/reportgenerator">
+
+
+<Box sx={{display:'fixed',marginTop:'40px'}}>
+<Card sx={{width:'33%',backgroundColor:'transparent',textAlign:'center',height:'250px',padding:'5px'}}>
+<Tooltip title="visit the Report Generator" placement="top-end">
+<Link  style={{ color: 'white' }} to="/reportgenerator" >
 <NoteAltTwoToneIcon className="linkHover" sx={{color:'darkgray',fontSize:'100px'}}/>
 <Typography className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Report Generator </u></Typography>
 </Link>
+</Tooltip>
 <Box>
   <Typography sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
 </Box>
 </Card>
 <Card sx={{width:'33%',
+padding:'5px',
 backgroundColor:'transparent',textAlign:'center'}}>
+  <Tooltip title="visit the Lesson Planner" placement="top-end">
 <Link  style={{ color: 'white' }} to="/lessonplanner">
 <WorkHistoryRoundedIcon className="linkHover" sx={{color:'darkgray',fontSize:'100px'}}/>
 <Typography className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Lesson Planner </u></Typography>
 </Link>
+</Tooltip>
 <Typography sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
 </Card>
 <Card sx={{width:'33%',
+padding:'5px',
 backgroundColor:'transparent',textAlign:'center'}}>
+  <Tooltip title="visit the Constant Companion" placement="top-end">
 <Link  style={{ color: 'white' }} to="/companion">
 <TagFacesRoundedIcon className="linkHover" sx={{color:'darkgray',fontSize:'100px'}}/>
 <Typography className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Constant Companion</u></Typography>
 </Link>
+</Tooltip>
 <Typography sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
 </Card>
         </Box>
       </Box>
 
-
-      <Box ref={contactRef} sx={{ 
+<Box ref={contactRef} sx={{ 
       padding: '2rem', 
-      display:'flex',
+      display:'fixed',
       backgroundColor: '#e0e0e0',
-      margin:'auto',
-      marginTop:'20px',
-      width:'90%',
+      marginTop:'10px',
+      width:'100%',
       opacity:'60%',
       height:'10vh',
-      textAlign:'center' }}>
+      textAlign:'center',
+      }}>
         
-        <Box sx={{width:'50%'}}>
+        <Box sx={{width:'50%',margin:'auto'}}>
+
         <Typography 
         color="primary"
-        variant="h6">Contact Us</Typography>
+        variant="h6">
+          Contact Us</Typography>
         <PublicIcon
           color="primary"
           sx={{fontSize:'20px'}}
@@ -196,9 +219,13 @@ backgroundColor:'transparent',textAlign:'center'}}>
      
 
       <Box sx={{textAlign:'center',left:'90%',margin:'20px'}}>
+      <Tooltip title="scroll to top">
       <Button 
+      sx={{width:'200px'}}
+      className="buttonHover"
       variant="contained" 
       onClick={() => scrollToSection(topRef)}><ArrowCircleUpIcon/></Button>
+      </Tooltip>
       </Box>
      
      
