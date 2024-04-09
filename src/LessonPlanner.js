@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState,useRef } from 'react';
+import { useState,useRef,useEffect } from 'react';
 import ReactCardFlip from 'react-card-flip';
 import DownloadIcon from '@mui/icons-material/Download';
 import ExampleLessonJSON from './ExampleLesson.json'
@@ -23,6 +23,7 @@ import {
     FormControlLabel,
     FormLabel,
     Paper,
+    Grid
 
   
   } from "@mui/material"
@@ -99,6 +100,7 @@ const {
     const [processing,setProcessing] = useState(false)
 
     const [flip, setFlip] = useState(false);
+
 
 //section of area to take a screenshot of
 const screenshotArea = useRef(null);
@@ -204,6 +206,7 @@ const formatLesson = (lessonDetails)=>{
          sx={{padding:'1px',backgroundColor:'lightgrey'}}>
         <Box sx={{marginBottom:'10px',marginTop:'10px'}}>
         <Tooltip title="download lesson Image" placement="right">
+          <Button variant="contained" onClick={()=>{console.log("height",document.getElementById("learning").style)}}>OUTPUT Height</Button>
         <Button
         class = "hoverColor"
         onClick={handleLessonDownload} 
@@ -214,15 +217,24 @@ const formatLesson = (lessonDetails)=>{
         </Box>
 
       
-      <Box sx={{ 
+      <Box container  sx={{ 
         display:{ xs: "block", md: "flex", lg: "flex" },
-        justifyContent:"center",alignItems:'center',margin:'auto'
+  //       direction:"row",
+  // justifyContent:"center",
+  // alignItems:"center"
+        flexDirection:'row',
+        justifyContent:"space-between",alignItems:'center',margin:'auto'
         }}>
+        
+        
             
           <Card sx={{
-          display:{ xs: "block", md: "inline-block", lg: "inline-block" },
+          display:{ xs: "block", md: "flex", lg: "flex" },
           width:{ xs: "100%", md: "50%", lg: "50%" },
+          flexDirection:'column',
+          justifyContent: "space-between",
           margin:'auto',
+          height: '100%',
           padding:'10px',
           textAlign:'left',
           backgroundColor:'lightblue',
@@ -264,14 +276,19 @@ const formatLesson = (lessonDetails)=>{
           </Card>
        
          
-          <Card sx={{
+          <Card 
+          id="learning"
+          sx={{
           margin:'10px', 
           alignItems:'left',
           padding:'20px',
           textAlign:'left',
           margin:'auto',
-          display:{ xs: "block", md: "inline-block", lg: "inline-block" },
+          height: '100%',
+          display:{ xs: "block", md: "flex", lg: "flex" },
           width:{ xs: "100%", md: "50%", lg: "50%" },
+          flexDirection:'column',
+          justifyContent: "space-between",
           backgroundColor:"lightsalmon"
 
           }}>
@@ -304,8 +321,7 @@ const formatLesson = (lessonDetails)=>{
             })
         }
           </Card>
-    
-          
+         
       </Box>
 
 
