@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useState } from 'react';
 import { Button, Typography,
-
+Grid,
    Box,
    Card,
   Modal,
@@ -79,16 +79,18 @@ const LandingPage = () => {
       <VolunteerActivismIcon  sx={{fontSize:'50px',color:"#81D8D0"}}/>
         <Typography 
         color="#81D8D0"
-        variant="h1" sx={{ fontWeight: 'bold',textShadow: "2px 2px gray" }}>EduCare</Typography>
+        variant="h1" sx={{ fontSize:{xs:'70px',sm:'100px',md:'120px',lg:'140px'},fontWeight: 'bold',textShadow: "2px 2px gray" }}>EduCare</Typography>
       </Box>
 
       <Box sx={{ 
         margin:'auto',
         width:'90%',
         padding: '2rem' }}>
-        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(aboutRef)}><Typography>About</Typography></Button>
-        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(servicesRef)}><Typography>Services</Typography></Button>
-        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(contactRef)}><Typography>Contact</Typography></Button>
+      
+        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(aboutRef)}><Typography sx={{fontSize:{xs:'10px',md:'20px',lg:'20px'}}}>About</Typography></Button>
+        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(servicesRef)}><Typography sx={{fontSize:{xs:'10px',md:'20px',lg:'20px'}}}>Services</Typography></Button>
+        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(contactRef)}><Typography sx={{fontSize:{xs:'10px',md:'20px',lg:'20px'}}}>Contact</Typography></Button>
+        
       </Box>
 
       <Box ref={aboutRef} sx={{
@@ -145,10 +147,10 @@ const LandingPage = () => {
 
 
 <Box sx={{display:'fixed',marginTop:'40px'}}>
-<Card sx={{width:'33%',backgroundColor:'transparent',textAlign:'center',height:'250px',padding:'5px'}}>
+<Card sx={{width:'33%',backgroundColor:'transparent',textAlign:'center',padding:'5px'}}>
 <Tooltip title="visit the Report Generator" placement="top-end">
 <Link  style={{ color: 'white' }} to="/reportgenerator" >
-<NoteAltTwoToneIcon className="linkHover" sx={{color:'darkgray',fontSize:'100px'}}/>
+<NoteAltTwoToneIcon className="linkHover" sx={{color:'darkgray',fontSize:{xs:'50px',md:'30px',lg:'100px'}}}/>
 <Typography className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Report Generator </u></Typography>
 </Link>
 </Tooltip>
@@ -161,7 +163,7 @@ padding:'5px',
 backgroundColor:'transparent',textAlign:'center'}}>
   <Tooltip title="visit the Lesson Planner" placement="top-end">
 <Link  style={{ color: 'white' }} to="/lessonplanner">
-<WorkHistoryRoundedIcon className="linkHover" sx={{color:'darkgray',fontSize:'100px'}}/>
+<WorkHistoryRoundedIcon className="linkHover" sx={{color:'darkgray',fontSize:{xs:'50px',md:'30px',lg:'100px'}}}/>
 <Typography className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Lesson Planner </u></Typography>
 </Link>
 </Tooltip>
@@ -172,7 +174,7 @@ padding:'5px',
 backgroundColor:'transparent',textAlign:'center'}}>
   <Tooltip title="visit the Constant Companion" placement="top-end">
 <Link  style={{ color: 'white' }} to="/companion">
-<TagFacesRoundedIcon className="linkHover" sx={{color:'darkgray',fontSize:'100px'}}/>
+<TagFacesRoundedIcon className="linkHover" sx={{color:'darkgray',fontSize:{xs:'50px',md:'30px',lg:'100px'}}}/>
 <Typography className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Constant Companion</u></Typography>
 </Link>
 </Tooltip>

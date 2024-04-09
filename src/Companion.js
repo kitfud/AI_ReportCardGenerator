@@ -233,39 +233,44 @@ const stopReading =()=>{
   return (
     <>
 
-       <Box sx={{textAlign:'center'}}>
-       <Typography sx={{fontSize:'50px',
+       <Box sx={{textAlign:'center',marginTop:'80px'}}>
+       <Typography sx={{
+       fontSize:'50px',
        fontFamily: "Bebas Neue",
-       margin:'20px',
-      color:"#81D8D0"}} variant='h1'>Constant Companion</Typography>
+       textShadow: "2px 2px gray",
+       marginTop:{sm:'220px',md:'120px',lg:'90px'},
+      color:"#81D8D0"}} 
+      variant='h1'>Constant Companion</Typography>
        </Box>
         
-    <Box sx={{display:'flex',justifyContent:'center'}}>
+    <Box sx={{display:{xs:'block',md:'flex',lg:'flex'},
+    justifyContent:'center',
+    textAlign:'center',
+    }}>
     
         <Card sx={{
-        width:'30%',
-        textAlign:'center',
-        alignItems:'center',
+        margin:{xs:'0 auto',sm:'0 auto',md:'5px',lg:'5px'},
+        width: {xs:'80%',md:'30%',lg:'30%'},
         padding:'20px',
-        margin:'10px'}}>
+        }}>
 
          
        <Grid container direction="row" columnGap={{ xs: 1}} sx={{margin:'10px',padding:'2px',position:'relative'}} >   
           <Tooltip title="change backdrop to garden" placement="top">
-          <Box className="highlightScroll" onClick={()=>setBackground(garden)}
-          item sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${garden})`}} ></Box>
+          <Box item="true" className="highlightScroll" onClick={()=>setBackground(garden)}
+          sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${garden})`}} ></Box>
           </Tooltip>
          <Tooltip title="change backdrop to office" placement="top">
-          <Box className="highlightScroll" onClick={()=>setBackground(office)}
-          item sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${office})`}} ></Box>
+          <Box item="true" className="highlightScroll" onClick={()=>setBackground(office)}
+           sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${office})`}} ></Box>
           </Tooltip>
           <Tooltip title="change backdrop to cafe" placement="top">
-          <Box className="highlightScroll" onClick={()=>setBackground(cafe)}
-          item sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${cafe})`}} ></Box>  
+          <Box item="true" className="highlightScroll" onClick={()=>setBackground(cafe)}
+         sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${cafe})`}} ></Box>  
           </Tooltip>
           <Tooltip title="change backdrop to library" placement="top">
-          <Box className="highlightScroll"  onClick={()=>setBackground(library)}
-          item sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${library})`}} ></Box>   
+          <Box item="true" className="highlightScroll"  onClick={()=>setBackground(library)}
+          dsx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${library})`}} ></Box>   
              </Tooltip>
        </Grid>
    
@@ -287,8 +292,12 @@ const stopReading =()=>{
           </>:null
         }
         </Card>
-
-        <Card sx={{width:'30%',textAlign:'center',padding:'20px',margin:'10px'}}>
+        <Box sx={{height:'20px'}}/>
+        <Card sx={{
+          margin:{xs:'0 auto',sm:'0 auto',md:'5px',lg:'5px'},
+        width: {xs:'80%',md:'30%',lg:'30%'},
+        padding:'20px',
+        }}>
             {firstquestion?
             <Typography sx={{fontFamily: "Bebas Neue",fontSize:'20px'}}>"Hey, how's your day shaping up so far? Has anything exciting happened yet?</Typography>:null
             }
@@ -310,7 +319,7 @@ const stopReading =()=>{
         variant='contained'
         onClick={handleSubmit}>SEND TO COMPANION</Button>:null:<CircularProgress sx={{marginTop:'20px'}}/>
         } 
-        <Box sx={{marginTop:'80px'}}>
+        <Box sx={{marginTop:'40px'}}>
         {
             firstquestion?null:<Button onClick={restartConvo} color="error" variant='contained'>RESTART CONVERSATION</Button>
         }
@@ -320,7 +329,7 @@ const stopReading =()=>{
        
     </Box>
 
-   
+  
     </>
   )
 }

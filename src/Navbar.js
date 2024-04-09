@@ -10,9 +10,6 @@ import { Box,AppBar,Container,
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import ParticlesEffect from './ParticlesEffect';
 
-import NoteAltTwoToneIcon from '@mui/icons-material/NoteAltTwoTone';
-import WorkHistoryRoundedIcon from '@mui/icons-material/WorkHistoryRounded';
-import TagFacesRoundedIcon from '@mui/icons-material/TagFacesRounded';
 
 const Navbar = () => {
     const [landingActive,setLandingActive] = useState(false)
@@ -66,7 +63,7 @@ else{
     <Toolbar  disableGutters>
  
     <Link style={landingActive?{color:"#81D8D0"}:{color:"white"}} to="/">
-    <VolunteerActivismIcon sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1 }}/>
+    <VolunteerActivismIcon sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1 ,marginTop:'2px'}}/>
     <Typography
             variant="h6"
             noWrap
@@ -91,7 +88,7 @@ else{
           variant="h6" 
           component="div" 
           sx={{ 
-             marginLeft:'50px',fontFamily: "Bebas Neue" }}>
+            marginLeft:{xs:'20px',md:'30px',lg:'60px'},fontFamily: "Bebas Neue" }}>
             Report Generator
           </Typography>
           </Link>
@@ -100,7 +97,7 @@ else{
           <Typography 
           variant="h6" 
           component="div" 
-          sx={{ marginLeft:'30px',fontFamily: "Bebas Neue" }}>
+          sx={{ marginLeft:{xs:'20px',md:'30px',lg:'40px'},fontFamily: "Bebas Neue" }}>
             Lesson Planner
           </Typography>  
         </Link>
@@ -110,7 +107,7 @@ else{
           <Typography 
           variant="h6" 
           component="div" 
-          sx={{ marginLeft:'30px',fontFamily: "Bebas Neue" }}>
+          sx={{ marginLeft:{xs:'20px',md:'30px',lg:'40px'},fontFamily: "Bebas Neue" }}>
             ConstantCompanion
           </Typography>  
         </Link>

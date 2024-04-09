@@ -201,8 +201,8 @@ const formatLesson = (lessonDetails)=>{
         <Paper 
           elevation={24}
          
-         sx={{padding:'10px',backgroundColor:'lightgrey'}}>
-        <Box sx={{marginBottom:'10px'}}>
+         sx={{padding:'1px',backgroundColor:'lightgrey'}}>
+        <Box sx={{marginBottom:'10px',marginTop:'10px'}}>
         <Tooltip title="download lesson Image" placement="right">
         <Button
         class = "hoverColor"
@@ -215,18 +215,17 @@ const formatLesson = (lessonDetails)=>{
 
       
       <Box sx={{ 
-        display:"flex",
-        justifyContent:"center",
+        display:{ xs: "block", md: "flex", lg: "flex" },
+        justifyContent:"center",alignItems:'center',margin:'auto'
         }}>
             
           <Card sx={{
-          display:'inline-block',
-          width:'50%',
-          margin:'10px',
+          display:{ xs: "block", md: "inline-block", lg: "inline-block" },
+          width:{ xs: "100%", md: "50%", lg: "50%" },
+          margin:'auto',
           padding:'10px',
           textAlign:'left',
-          backgroundColor:'lightblue'
-        
+          backgroundColor:'lightblue',
           }}>
         
           <ul>
@@ -270,7 +269,9 @@ const formatLesson = (lessonDetails)=>{
           alignItems:'left',
           padding:'20px',
           textAlign:'left',
-          width:'50%',
+          margin:'auto',
+          display:{ xs: "block", md: "inline-block", lg: "inline-block" },
+          width:{ xs: "100%", md: "50%", lg: "50%" },
           backgroundColor:"lightsalmon"
 
           }}>
@@ -313,7 +314,8 @@ const formatLesson = (lessonDetails)=>{
 <Card 
 variant='outlined'
 raised={true}
-sx={{display:'flex',
+sx={{
+display:'flex',
 padding:'20px',
 width:'95%',
 backgroundColor:"lightgoldenrodyellow"
@@ -360,16 +362,19 @@ backgroundColor:"lightgoldenrodyellow"
     <ReactCardFlip isFlipped={flip}
             flipDirection="vertical">
   <header className="App-header">
-  <Typography sx={{fontSize:'50px',fontFamily: "Bebas Neue",color:"#81D8D0"}} variant='h1'>Lesson Planner</Typography>
-   <Card sx={{margin:'60px',width:'600px',borderRadius:'2%'}}>
+  <Typography sx={{fontSize:'50px',
+  textShadow: "2px 2px gray",
+  marginTop:{xs:'70px',md:'60px',lg:'80px'},
+  fontFamily: "Bebas Neue",color:"#81D8D0"}} variant='h1'>Lesson Planner</Typography>
    
+   <Card sx={{margin:'20px',width:{xs:'250px',sm:'325px',md:'350px',lg:'350px'},borderRadius:'2%'}}>
     <Box sx={{marginTop:'20px'}}>
         <TextField 
         onChange={(e)=>{setGrade(e.target.value)}}
         label="Grade Level"/>
     </Box>
     <div>
-      <FormControl sx={{ m: 1, minWidth: '80%' }}>
+      <FormControl sx={{ m: 1, minWidth: '55%' }}>
         <InputLabel id="demo-simple-select-autowidth-label">Environment</InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
@@ -439,7 +444,9 @@ sx={{padding:'20px',width:'40%'}} multiline
    </Card>
         </header> 
 <center>
-<Card sx={{backgroundColor:"whitesmoke",width:'80%'}}>
+<Card sx={{backgroundColor:"whitesmoke",width:'90%',
+marginTop:'100px',
+opacity:'0.9'}}>
 <div ref={screenshotArea}>
 {formatLesson(airesponse)}
 </div>
