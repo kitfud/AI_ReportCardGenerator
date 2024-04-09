@@ -167,7 +167,7 @@ function checkContext(){
 }
 
 let AIQuery = prompt + exampleJSON+ checkEnvironment() + checkContext()+ timeframe+ prompt2
-console.log(AIQuery)
+
 setAIQuery(AIQuery)
 run(AIQuery)
 }
@@ -206,7 +206,6 @@ const formatLesson = (lessonDetails)=>{
          sx={{padding:'1px',backgroundColor:'lightgrey'}}>
         <Box sx={{marginBottom:'10px',marginTop:'10px'}}>
         <Tooltip title="download lesson Image" placement="right">
-          <Button variant="contained" onClick={()=>{console.log("height",document.getElementById("learning").style)}}>OUTPUT Height</Button>
         <Button
         class = "hoverColor"
         onClick={handleLessonDownload} 
@@ -217,7 +216,7 @@ const formatLesson = (lessonDetails)=>{
         </Box>
 
       
-      <Box container  sx={{ 
+      <Box container="true"  sx={{ 
         display:{ xs: "block", md: "flex", lg: "flex" },
   //       direction:"row",
   // justifyContent:"center",
@@ -233,7 +232,7 @@ const formatLesson = (lessonDetails)=>{
           width:{ xs: "100%", md: "50%", lg: "50%" },
           flexDirection:'column',
           justifyContent: "space-between",
-          margin:'auto',
+          margin:'5px',
           height: '100%',
           padding:'10px',
           textAlign:'left',
@@ -279,11 +278,10 @@ const formatLesson = (lessonDetails)=>{
           <Card 
           id="learning"
           sx={{
-          margin:'10px', 
+          margin:'5px', 
           alignItems:'left',
           padding:'20px',
           textAlign:'left',
-          margin:'auto',
           height: '100%',
           display:{ xs: "block", md: "flex", lg: "flex" },
           width:{ xs: "100%", md: "50%", lg: "50%" },
@@ -297,8 +295,10 @@ const formatLesson = (lessonDetails)=>{
           <Typography sx={{fontWeight:'bold'}}><u>Learning Goals:</u></Typography>
         {
             learningGoals.map(item=>{
-                return(
+                return(<>
                     <Typography>&#x2022;{item}</Typography>
+                  
+                    </>
                 )
             })
         }
@@ -307,7 +307,10 @@ const formatLesson = (lessonDetails)=>{
         {
             bigIdeas.map(item=>{
                 return(
+                  <>
                    <Typography>&#x2022;{item}</Typography>
+                   <br></br>
+                   </>
                 )
             })
         }
