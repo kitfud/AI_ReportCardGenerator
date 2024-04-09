@@ -256,6 +256,11 @@ const stopReading =()=>{
 
          
        <Grid container direction="row" columnGap={{ xs: 1}} sx={{margin:'10px',padding:'2px',position:'relative'}} >   
+       <Tooltip title="change backdrop to library" placement="top">
+          <Box item="true" className="highlightScroll"  onClick={()=>setBackground(library)}
+          sx={{backgroundSize:"cover",width:'20px',height:'20px',backgroundImage:`url(${library})`}} ></Box>   
+             </Tooltip>
+         
           <Tooltip title="change backdrop to garden" placement="top">
           <Box item="true" className="highlightScroll" onClick={()=>setBackground(garden)}
           sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${garden})`}} ></Box>
@@ -268,10 +273,7 @@ const stopReading =()=>{
           <Box item="true" className="highlightScroll" onClick={()=>setBackground(cafe)}
          sx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${cafe})`}} ></Box>  
           </Tooltip>
-          <Tooltip title="change backdrop to library" placement="top">
-          <Box item="true" className="highlightScroll"  onClick={()=>setBackground(library)}
-          dsx={{backgroundSize: "cover",width:'20px',height:'20px',backgroundImage:`url(${library})`}} ></Box>   
-             </Tooltip>
+        
        </Grid>
    
           <Box sx={{ backgroundSize: "cover",backgroundImage:`url(${background})`,height:'300px',marginBottom:'10px',padding:'2px'}}>
