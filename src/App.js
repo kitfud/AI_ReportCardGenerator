@@ -283,7 +283,7 @@ const stopSpeech = ()=>{
 
 
 <Box sx={{marginTop:"10px"}}>
-  <Typography>Add Assignment</Typography>
+  <Typography  fontFamily= "Bebas Neue">Add Assignment</Typography>
 <Button  onClick={addAssignment}>
 <AddCircleIcon sx={{margin:'15px'}}/>
 </Button>
@@ -329,7 +329,13 @@ deleteAssignments={deleteAssignments}
     variant='contained' 
     color="success"
     onClick={runChat}
-    sx={{marginTop:'10px'}}>Generate Comment</Button>:null
+    sx={{marginTop:'10px'}}>
+      <Typography 
+      variant={'h5'}
+      fontFamily={"Bebas Neue"}>
+      Generate Comment
+      </Typography>
+      </Button>:null
     }
 
       {

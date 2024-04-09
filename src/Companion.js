@@ -283,7 +283,7 @@ const stopReading =()=>{
         {
           airesponse !=""?
           <>
-        <Typography>{airesponse}
+        <Typography variant='h5' fontFamily={"Bebas Neue"}>{airesponse}
           </Typography>
           {audioStop==false?
           <Button 

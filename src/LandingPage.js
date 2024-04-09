@@ -79,7 +79,7 @@ const LandingPage = () => {
       <VolunteerActivismIcon  sx={{fontSize:'50px',color:"#81D8D0"}}/>
         <Typography 
         color="#81D8D0"
-        variant="h1" sx={{ fontSize:{xs:'70px',sm:'100px',md:'120px',lg:'140px'},fontWeight: 'bold',textShadow: "2px 2px gray" }}>EduCare</Typography>
+        variant="h1"  fontFamily= "Bebas Neue" sx={{ fontSize:{xs:'70px',sm:'100px',md:'120px',lg:'140px'},fontWeight: 'bold',textShadow: "2px 2px gray" }}>EduCare</Typography>
       </Box>
 
       <Box sx={{ 
@@ -87,9 +87,9 @@ const LandingPage = () => {
         width:'90%',
         padding: '2rem' }}>
       
-        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(aboutRef)}><Typography sx={{fontSize:{xs:'10px',md:'20px',lg:'20px'}}}>About</Typography></Button>
-        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(servicesRef)}><Typography sx={{fontSize:{xs:'10px',md:'20px',lg:'20px'}}}>Services</Typography></Button>
-        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(contactRef)}><Typography sx={{fontSize:{xs:'10px',md:'20px',lg:'20px'}}}>Contact</Typography></Button>
+        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(aboutRef)}><Typography   fontFamily= "Bebas Neue" sx={{fontSize:{xs:'10px',md:'20px',lg:'20px'}}}>About</Typography></Button>
+        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(servicesRef)}><Typography fontFamily= "Bebas Neue" sx={{fontSize:{xs:'10px',md:'20px',lg:'20px'}}}>Services</Typography></Button>
+        <Button className="buttonHover" sx={{margin:'2px',}} variant="contained" onClick={() => scrollToSection(contactRef)}><Typography fontFamily= "Bebas Neue" sx={{fontSize:{xs:'10px',md:'20px',lg:'20px'}}}>Contact</Typography></Button>
         
       </Box>
 
@@ -108,13 +108,14 @@ const LandingPage = () => {
         <Typography 
         color="primary"
         variant="h4"
+        fontFamily= "Bebas Neue"
         onClick={handleOpen}
         className='titleHover'
         ><u>About Us</u>
         </Typography>
 
         </Tooltip>
-        <Typography color="primary" variant='h6' sx={{marginLeft:'10px'}}>
+        <Typography fontFamily= "Bebas Neue" color="primary" variant='h6' sx={{marginLeft:'10px'}}>
           A one stop shop for your teaching needs! Our product seeks to address some of the time crunches which happen throughout the school year with our AI enhanced productivity features. 
         </Typography> 
         </Box>
@@ -136,10 +137,13 @@ const LandingPage = () => {
       width:'90%',
       height:'45vh' }}>
         <Typography 
+        fontFamily= "Bebas Neue"
         color="primary"
         variant="h2" 
         sx={{textAlign:'center',fontWeight:'bold',color:"#81D8D0",textShadow: "2px 2px gray"}} >Services</Typography>
         <Typography 
+        fontFamily= "Bebas Neue"
+        variant="h5"
         color="primary"
         sx={{textAlign:'center',fontWeight:'bold',color:"#81D8D0",textShadow: "2px 2px gray"}}>
           Test our innovative products:
@@ -151,11 +155,11 @@ const LandingPage = () => {
 <Tooltip title="visit the Report Generator" placement="top-end">
 <Link  style={{ color: 'white' }} to="/reportgenerator" >
 <NoteAltTwoToneIcon className="linkHover" sx={{color:'darkgray',fontSize:{xs:'50px',md:'30px',lg:'100px'}}}/>
-<Typography className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Report Generator </u></Typography>
+<Typography  fontFamily= "Bebas Neue" className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Report Generator </u></Typography>
 </Link>
 </Tooltip>
 <Box>
-  <Typography sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
+  <Typography  fontFamily= "Bebas Neue" sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
 </Box>
 </Card>
 <Card sx={{width:'33%',
@@ -164,10 +168,10 @@ backgroundColor:'transparent',textAlign:'center'}}>
   <Tooltip title="visit the Lesson Planner" placement="top-end">
 <Link  style={{ color: 'white' }} to="/lessonplanner">
 <WorkHistoryRoundedIcon className="linkHover" sx={{color:'darkgray',fontSize:{xs:'50px',md:'30px',lg:'100px'}}}/>
-<Typography className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Lesson Planner </u></Typography>
+<Typography  fontFamily= "Bebas Neue" className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Lesson Planner </u></Typography>
 </Link>
 </Tooltip>
-<Typography sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
+<Typography  fontFamily= "Bebas Neue" sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
 </Card>
 <Card sx={{width:'33%',
 padding:'5px',
@@ -175,10 +179,10 @@ backgroundColor:'transparent',textAlign:'center'}}>
   <Tooltip title="visit the Constant Companion" placement="top-end">
 <Link  style={{ color: 'white' }} to="/companion">
 <TagFacesRoundedIcon className="linkHover" sx={{color:'darkgray',fontSize:{xs:'50px',md:'30px',lg:'100px'}}}/>
-<Typography className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Constant Companion</u></Typography>
+<Typography  fontFamily= "Bebas Neue" className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Constant Companion</u></Typography>
 </Link>
 </Tooltip>
-<Typography sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
+<Typography  fontFamily= "Bebas Neue" sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
 </Card>
         </Box>
       </Box>
@@ -198,6 +202,7 @@ backgroundColor:'transparent',textAlign:'center'}}>
 
         <Typography 
         color="primary"
+        fontFamily= "Bebas Neue"
         variant="h6">
           Contact Us</Typography>
         <PublicIcon
@@ -206,16 +211,18 @@ backgroundColor:'transparent',textAlign:'center'}}>
           />
           <Typography color="primary"
           variant='h6'
+          fontFamily= "Bebas Neue"
           >kitfuderich@email.com</Typography>
         </Box>
       
         
          <Box sx={{width:'50%',margin:'auto'}}>
          <Typography 
+          fontFamily= "Bebas Neue"
         color="primary"
         variant="h6">Copyright</Typography>
          <CopyrightIcon sx={{fontSize:'20px'}} color="primary"/>
-          <Typography variant='h6' color="primary">2024 Kit Fuderich</Typography>
+          <Typography  fontFamily= "Bebas Neue" variant='h6' color="primary">2024 Kit Fuderich</Typography>
          </Box>
       </Box>
      
