@@ -393,7 +393,7 @@ backgroundColor:"lightgoldenrodyellow"
         label="Grade Level"/>
     </Box>
     <div>
-      <FormControl sx={{ m: 1, minWidth: '55%' }}>
+      <FormControl sx={{ m: 1, minWidth: {xs:'77%',sm:'60%',md:'55%',lg:'55%'} }}>
         <InputLabel id="demo-simple-select-autowidth-label">Environment</InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
@@ -430,7 +430,7 @@ backgroundColor:"lightgoldenrodyellow"
         label="Lesson Length (min)"/>
     </Box>
 
-    <FormControl>
+    <FormControl sx={{marginTop:'10px'}}>
       <FormLabel>Log information about student's prior knowledge?</FormLabel>
       <RadioGroup 
          value={valueRadio}
