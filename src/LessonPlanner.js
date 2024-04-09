@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState,useRef } from 'react';
+import { useState,useRef,useEffect } from 'react';
 import ReactCardFlip from 'react-card-flip';
 import DownloadIcon from '@mui/icons-material/Download';
 import ExampleLessonJSON from './ExampleLesson.json'
@@ -23,6 +23,7 @@ import {
     FormControlLabel,
     FormLabel,
     Paper,
+    Grid
 
   
   } from "@mui/material"
@@ -100,6 +101,7 @@ const {
 
     const [flip, setFlip] = useState(false);
 
+
 //section of area to take a screenshot of
 const screenshotArea = useRef(null);
 
@@ -165,7 +167,7 @@ function checkContext(){
 }
 
 let AIQuery = prompt + exampleJSON+ checkEnvironment() + checkContext()+ timeframe+ prompt2
-console.log(AIQuery)
+
 setAIQuery(AIQuery)
 run(AIQuery)
 }
@@ -214,15 +216,24 @@ const formatLesson = (lessonDetails)=>{
         </Box>
 
       
-      <Box sx={{ 
+      <Box container="true"  sx={{ 
         display:{ xs: "block", md: "flex", lg: "flex" },
-        justifyContent:"center",alignItems:'center',margin:'auto'
+  //       direction:"row",
+  // justifyContent:"center",
+  // alignItems:"center"
+        flexDirection:'row',
+        justifyContent:"space-between",alignItems:'center',margin:'auto'
         }}>
+        
+        
             
           <Card sx={{
-          display:{ xs: "block", md: "inline-block", lg: "inline-block" },
+          display:{ xs: "block", md: "flex", lg: "flex" },
           width:{ xs: "100%", md: "50%", lg: "50%" },
-          margin:'auto',
+          flexDirection:'column',
+          justifyContent: "space-between",
+          margin:'5px',
+          height: '100%',
           padding:'10px',
           textAlign:'left',
           backgroundColor:'lightblue',
@@ -264,14 +275,18 @@ const formatLesson = (lessonDetails)=>{
           </Card>
        
          
-          <Card sx={{
-          margin:'10px', 
+          <Card 
+          id="learning"
+          sx={{
+          margin:'5px', 
           alignItems:'left',
           padding:'20px',
           textAlign:'left',
-          margin:'auto',
-          display:{ xs: "block", md: "inline-block", lg: "inline-block" },
+          height: '100%',
+          display:{ xs: "block", md: "flex", lg: "flex" },
           width:{ xs: "100%", md: "50%", lg: "50%" },
+          flexDirection:'column',
+          justifyContent: "space-between",
           backgroundColor:"lightsalmon"
 
           }}>
@@ -280,8 +295,10 @@ const formatLesson = (lessonDetails)=>{
           <Typography sx={{fontWeight:'bold'}}><u>Learning Goals:</u></Typography>
         {
             learningGoals.map(item=>{
-                return(
+                return(<>
                     <Typography>&#x2022;{item}</Typography>
+                  
+                    </>
                 )
             })
         }
@@ -290,7 +307,10 @@ const formatLesson = (lessonDetails)=>{
         {
             bigIdeas.map(item=>{
                 return(
+                  <>
                    <Typography>&#x2022;{item}</Typography>
+                   <br></br>
+                   </>
                 )
             })
         }
@@ -304,8 +324,7 @@ const formatLesson = (lessonDetails)=>{
             })
         }
           </Card>
-    
-          
+         
       </Box>
 
 
