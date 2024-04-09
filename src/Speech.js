@@ -36,7 +36,7 @@ const Speech = ({setDictation}) => {
   return (
     <>
      <Box>
-      <Typography><Typography>Microphone: </Typography>{listening ? <MicIcon sx={{color:'green'}}/> : <MicOffIcon sx={{color:'red'}}/>}</Typography>
+      <Typography>Microphone: </Typography>{listening ? <Box><MicIcon sx={{color:'green'}}/></Box> :<Box> <MicOffIcon sx={{color:'red'}}/></Box>}
       {!listening?
       <Button variant='contained' 
       color="primary"

@@ -1,6 +1,6 @@
 
 import './App.css';
-import React,{useState,useEffect,useMemo} from 'react'
+import React,{useState,useEffect,useMemo,useRef} from 'react'
 import AssignmentData from './AssignmentData';
 import {
   Link,
@@ -38,13 +38,24 @@ const [length,setCommentLength] = useState(3)
 
 useEffect(()=>{
 setGenerating(false)
+if(data){
+scrollToSection(commentRef)
+}
 },[data])
 
+const commentRef = useRef(null);
+
+const scrollToSection = (ref) => {
+  window.scrollTo({
+    top: ref.current.offsetTop,
+    behavior: 'smooth',
+  });
+};
 
 // node --version # Should be >= 18
 // npm install @google/generative-ai
 const createMessage = ()=>{
-  let commentData= `Make sure the comment is no longer than ${length} setances long. Use the following data:`
+  let commentData= `Make sure the comment is no longer than ${length} setances long. Use the following data. Don't include anything in the comment related to the paragraph length or word count- include the comment onl:`
   let input = commentData + `Student's Name:${name}, Overall Grade:${grade},`
 
   assignmentData.forEach((element)=>{
@@ -52,7 +63,7 @@ const createMessage = ()=>{
     
     input = input + dataString
     })
-    console.log(input)
+   
     return input
   }
 
@@ -158,6 +169,7 @@ async function runChat() {
     }
   }
   setData(newString)
+  
 }
 catch(error){
 alert("a processing error has occured: "+ error)
@@ -247,7 +259,8 @@ const stopSpeech = ()=>{
    
  
       <header className="App-header">
-      <Typography sx={{fontSize:'50px',marginTop:'20px',fontFamily: "Bebas Neue",color:"#81D8D0"}} variant='h1'>Report Generator</Typography>
+      <Typography sx={{textShadow: "2px 2px gray", marginTop:{xs:'70px',md:'60px',lg:'70px'},fontFamily: "Bebas Neue",color:"#81D8D0"}} variant='h1'>
+        Report Generator</Typography>
         <Card sx={{margin:'40px',width:'300px',borderRadius:'2%'}}>
           <Box>
           <TextField  
@@ -383,13 +396,14 @@ deleteAssignments={deleteAssignments}
     {
       data?
       <Button 
+      ref={commentRef}
       onClick={restart}
       sx={{marginBottom:'20px'}} 
       variant="contained" 
       color="error">RESTART COMMENT</Button>:null
       }
     
-      </header>
+      </header >
     </div>
     </>
   );
