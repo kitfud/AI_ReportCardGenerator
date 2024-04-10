@@ -171,7 +171,7 @@ backgroundColor:'transparent',textAlign:'center'}}>
 <Typography  fontFamily= "Bebas Neue" className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Lesson Planner </u></Typography>
 </Link>
 </Tooltip>
-<Typography  fontFamily= "Bebas Neue" sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
+<Typography  fontFamily= "Bebas Neue" sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Create a lesson plan for a variety of instructional contexts and subject areas.</Typography>
 </Card>
 <Card sx={{width:'33%',
 padding:'5px',
@@ -182,7 +182,7 @@ backgroundColor:'transparent',textAlign:'center'}}>
 <Typography  fontFamily= "Bebas Neue" className="linkHover" sx={{color:'darkgray'}} variant='h6'><u>Constant Companion</u></Typography>
 </Link>
 </Tooltip>
-<Typography  fontFamily= "Bebas Neue" sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Generate reports for your students based on a final grade or series of assignments.</Typography>
+<Typography  fontFamily= "Bebas Neue" sx={{color:'darkgray',marginBottom:'10px'}} variant='h6'>Brainstorm ideas and develop classroom management techniques with an AI Chatbot.</Typography>
 </Card>
         </Box>
       </Box>
