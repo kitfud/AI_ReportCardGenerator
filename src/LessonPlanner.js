@@ -445,7 +445,7 @@ backgroundColor:"lightgoldenrodyellow"
     <Box>
 <TextField 
 onChange={(e)=>setPriorKnowledge(e.target.value)} 
-sx={{padding:'20px',width:'40%'}} multiline 
+sx={{padding:'20px',width:'70%'}} multiline 
 />
     </Box>
     : null
