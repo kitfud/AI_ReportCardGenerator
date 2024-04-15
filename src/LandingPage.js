@@ -59,16 +59,11 @@ const LandingPage = () => {
       >
         <Box sx={style}>
           <Box sx={{textAlign:'center'}}>
-          <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/p9r6DF8SJQs?si=ihE88GIFJ6kYjWaH" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/i6aj0PuygmQ?si=-TMNHhEuY0aH-0KH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </Box>
        
           <Typography id="modal-modal-description" sx={{ mt: 2,textAlign:'center' }}>
-            Learn some React....new video to be uploaded soon.
+            Watch the video for a walkthrough of EduCare's features.
           </Typography>
         </Box>
       </Modal>
