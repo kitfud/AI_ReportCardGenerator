@@ -86,7 +86,7 @@ npm start
 ```
 
 ## Live Deployment
-[coming soon]:
+https://educareai.netlify.app/
 
 ## Developer
 - [@kitfud](https://github.com/kitfud)
