@@ -59,7 +59,7 @@ const LandingPage = () => {
       >
         <Box sx={style}>
           <Box sx={{textAlign:'center'}}>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/i6aj0PuygmQ?si=-TMNHhEuY0aH-0KH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/bPNzHuAdlUE?si=69ItqJHI1KpBNI8b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </Box>
        
           <Typography id="modal-modal-description" sx={{ mt: 2,textAlign:'center' }}>
