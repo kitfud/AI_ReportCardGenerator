@@ -111,6 +111,15 @@ else{
             ConstantCompanion
           </Typography>  
         </Link>
+
+        <Link style={companionActive?{color:"#81D8D0"}:{color:"white"}} to="/demo">
+          <Typography 
+          variant="h6" 
+          component="div" 
+          sx={{ marginLeft:{xs:'20px',md:'30px',lg:'40px'},fontFamily: "Bebas Neue" }}>
+            Demo
+          </Typography>  
+        </Link>
     </Toolbar>
        </Container>
     </AppBar>

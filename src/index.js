@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import ErrorPage from './ErrorPage';
 import LandingPage from './LandingPage';
 import LessonPlanner from './LessonPlanner';
+import Demo from './Demo'
 
 
 import {
@@ -42,6 +43,11 @@ import Companion from './Companion';
           element:<Companion/>,
           
       },
+      {
+        path:'/demo',
+        element:<Demo/>,
+        
+    },
       ]
     },
   ]);
