@@ -55,7 +55,7 @@ const scrollToSection = (ref) => {
 // node --version # Should be >= 18
 // npm install @google/generative-ai
 const createMessage = ()=>{
-  let commentData= `Make sure the comment is no longer than ${length} setances long. Use the following data. Don't include anything in the comment related to the paragraph length or word count- include the comment onl:`
+  let commentData= `Make sure the comment is no longer than ${length} setances long. Use the following data. Don't include anything in the comment related to the paragraph length or word count- include the comment only:`
   let input = commentData + `Student's Name:${name}, Overall Grade:${grade},`
 
   assignmentData.forEach((element)=>{
