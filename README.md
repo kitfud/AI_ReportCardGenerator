@@ -65,6 +65,11 @@ Engage in a conversation with an AI chatbot primed to act as a supportive school
 The web app was built using this front-end framework.
 - <strong>Google AI Studio/Google Gemini</strong>:
 Google AI Studio enables you to iterate on different AI prompts to determine what works best. Once you have a prompt suitable for your desired use case, you can export it for integration into your code. The AI Studio leverages Google's Gemini AI (Large Language Model).
+
+<a href="https://www.youtube.com/watch?v=DfcMojT89Ms" target="_blank">Google AI Studio use within EduCare: Long Video (~14 min)</a>
+<br></br>
+[Google AI Studio use within EduCare:Short Video (~5 min)](https://www.youtube.com/watch?v=TMx0kROPlFk)
+
 - <strong>Material UI</strong>:
 The front-end styling library throughout the app.
 
