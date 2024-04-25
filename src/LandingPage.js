@@ -199,7 +199,7 @@ backgroundColor:'transparent',textAlign:'center'}}>
         color="primary"
         fontFamily= "Bebas Neue"
         variant="h6">
-          Contact Us</Typography>
+          Contact Us:</Typography>
         <PublicIcon
           color="primary"
           sx={{fontSize:'20px'}}
@@ -207,7 +207,16 @@ backgroundColor:'transparent',textAlign:'center'}}>
           <Typography color="primary"
           variant='h6'
           fontFamily= "Bebas Neue"
-          >kitfuderich@email.com</Typography>
+          >
+            <Tooltip title="contact via form on Kit's website">
+           
+            <a href="https://kittech.weebly.com/contact.html"
+            target="_blank"
+            class="titleHover"
+            >Kit's Teaching Portfolio</a>
+               
+               </Tooltip>
+          </Typography>
         </Box>
       
         
